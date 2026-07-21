@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #06060a; color: #fff; font-family: 'Manrope', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #3B82F6; text-decoration: none; }
+  a:hover { color: #60a5fa; }
+  h1,h2,h3 { font-family: 'Space Grotesk', system-ui, sans-serif; margin: 0; }
+</style>
+</helmet>
+
+<div style="max-width:1120px; margin:0 auto; background:#0D0D0F; border-left:1px solid #1E1E2A; border-right:1px solid #1E1E2A; overflow:hidden; min-height:100vh;">
+
+<div style="border-bottom:1px solid #14141c;">
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:22px 40px;">
+    <a href="index.html" style="display:flex; align-items:center; gap:10px; color:#fff;">
+      <img src="assets/splash-icon.png" style="width:30px; height:30px;" />
+      <span style="font-family:'Space Grotesk'; font-weight:700; font-size:20px;">Film<span style="color:#3B82F6;">Catch</span></span>
+    </a>
+    <div style="display:flex; align-items:center; gap:30px; font-size:15px;">
+      <a href="how-it-works.html" style="color:#9CA3AF;" style-hover="color:#fff;">How it works</a>
+      <a href="support.html" style="color:#9CA3AF;" style-hover="color:#fff;">Support</a>
+      <a href="https://apps.apple.com/app/filmcatch-movie-collecting" style="background:#3B82F6; color:#fff; padding:9px 18px; border-radius:10px; font-weight:700; font-family:'Space Grotesk';" style-hover="background:#2563EB; color:#fff;">Get the app</a>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:720px; margin:0 auto; padding:64px 40px 80px;">
+  <span style="font-size:13px; letter-spacing:2px; color:#60a5fa; text-transform:uppercase; font-family:'Space Grotesk';">Legal</span>
+  <h1 style="font-size:40px; letter-spacing:-1px; margin:12px 0 6px;"><span style="color:#3B82F6;">FilmCatch</span> Privacy Policy</h1>
+  <p style="color:#4B5563; font-size:14px; margin:0 0 32px;">Last updated: July 18, 2026</p>
+
+  <p style="color:#b6bcc8; font-size:16px; line-height:1.65;">FilmCatch is a location-based game for discovering and collecting movies, operated by <b style="color:#fff;">Myers Entertainment LLC</b> (Florida, USA). This policy explains what we collect and your choices.</p>
+
+  <h2 style="font-size:22px; color:#fff; margin:32px 0 10px;">What we collect</h2>
+  <p style="color:#9CA3AF; font-size:16px; line-height:1.65; margin:0;">Account email; your device location while using the app (to place nearby films and let you catch them — used in real time, never sold); your game data (collection, currencies, level, streaks, achievements, listings, trades, messages); an optional display name, bio and photos; and a push token if you enable notifications.</p>
+
+  <h2 style="font-size:22px; color:#fff; margin:32px 0 10px;">How we use it</h2>
+  <p style="color:#9CA3AF; font-size:16px; line-height:1.65; margin:0;">To run the game — show nearby films, sync and display your collection, power trading and the leaderboard — and to send notifications you opt into. We do not use third-party advertising or tracking.</p>
+
+  <h2 style="font-size:22px; color:#fff; margin:32px 0 10px;">Sharing</h2>
+  <p style="color:#9CA3AF; font-size:16px; line-height:1.65; margin:0;">Your display name is visible to other players on the leaderboard and in trades. Your email and exact location are never shown to other players. We use Supabase (authentication, database, storage), Expo (push notification delivery), and TMDB (movie data). We never sell your personal information.</p>
+
+  <h2 style="font-size:22px; color:#fff; margin:32px 0 10px;">Retention &amp; deletion</h2>
+  <p style="color:#9CA3AF; font-size:16px; line-height:1.65; margin:0;">Your data is kept while your account is active. You can permanently delete your account and all its data anytime in the app: Settings → Data → Delete account. Deletion is immediate and irreversible.</p>
+
+  <h2 style="font-size:22px; color:#fff; margin:32px 0 10px;">Children</h2>
+  <p style="color:#9CA3AF; font-size:16px; line-height:1.65; margin:0;">FilmCatch is not directed to children under 13 and we do not knowingly collect their information.</p>
+
+  <h2 style="font-size:22px; color:#fff; margin:32px 0 10px;">Contact</h2>
+  <p style="color:#9CA3AF; font-size:16px; line-height:1.65; margin:0;">Questions? Contact Myers Entertainment LLC at <a href="mailto:noahm726@icloud.com">noahm726@icloud.com</a>.</p>
+
+  <div style="margin-top:48px; color:#4B5563; font-size:13px; border-top:1px solid #1E1E2A; padding-top:18px;">© 2026 Myers Entertainment LLC · FilmCatch uses the TMDB API but is not endorsed or certified by TMDB.</div>
+</div>
+
+<div style="border-top:1px solid #14141c;">
+  <div style="max-width:1120px; margin:0 auto; padding:26px 40px; display:flex; justify-content:space-between; color:#4B5563; font-size:13px;">
+    <span>© 2026 Myers Entertainment LLC · Bradenton, Florida</span>
+    <div style="display:flex; gap:16px;">
+      <a href="privacy.html" style="color:#6b7280;" style-hover="color:#fff;">Privacy</a>
+      <a href="terms.html" style="color:#6b7280;" style-hover="color:#fff;">Terms</a>
+      <a href="support.html" style="color:#6b7280;" style-hover="color:#fff;">Support</a>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

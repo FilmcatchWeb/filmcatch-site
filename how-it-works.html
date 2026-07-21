@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #06060a; color: #fff; font-family: 'Manrope', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #3B82F6; text-decoration: none; }
+  a:hover { color: #60a5fa; }
+  h1,h2,h3 { font-family: 'Space Grotesk', system-ui, sans-serif; margin: 0; }
+  @keyframes fc-pulse { 0%,100% { transform: scale(1); opacity: .55; } 50% { transform: scale(1.35); opacity: 0; } }
+</style>
+</helmet>
+
+<div style="max-width:1120px; margin:0 auto; background:#0D0D0F; border-left:1px solid #1E1E2A; border-right:1px solid #1E1E2A; overflow:hidden; min-height:100vh;">
+
+<!-- nav -->
+<div style="border-bottom:1px solid #14141c;">
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:22px 40px;">
+    <a href="index.html" style="display:flex; align-items:center; gap:10px; color:#fff;">
+      <img src="assets/splash-icon.png" style="width:30px; height:30px;" />
+      <span style="font-family:'Space Grotesk'; font-weight:700; font-size:20px;">Film<span style="color:#3B82F6;">Catch</span></span>
+    </a>
+    <div style="display:flex; align-items:center; gap:30px; font-size:15px;">
+      <a href="how-it-works.html" style="color:#fff; font-weight:700;">How it works</a>
+      <a href="index.html#rarities" style="color:#9CA3AF;" style-hover="color:#fff;">Rarities</a>
+      <a href="index.html#trading" style="color:#9CA3AF;" style-hover="color:#fff;">Trading</a>
+      <a href="support.html" style="color:#9CA3AF;" style-hover="color:#fff;">Support</a>
+      <a href="https://apps.apple.com/app/filmcatch-movie-collecting" style="background:#3B82F6; color:#fff; padding:9px 18px; border-radius:10px; font-weight:700; font-family:'Space Grotesk';" style-hover="background:#2563EB; color:#fff;">Get the app</a>
+    </div>
+  </div>
+</div>
+
+<!-- hero -->
+<div style="padding:80px 40px 56px; text-align:center; position:relative;">
+  <div style="position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:700px; height:400px; background:radial-gradient(circle, rgba(59,130,246,.16), transparent 65%); pointer-events:none;"></div>
+  <span style="position:relative; display:inline-flex; font-size:13px; letter-spacing:2px; color:#60a5fa; text-transform:uppercase; font-family:'Space Grotesk';">How it works</span>
+  <h1 style="position:relative; font-size:58px; letter-spacing:-1.5px; margin:16px auto 18px; max-width:760px; line-height:1.05;">Walk your city. Catch real movies. Build your collection.</h1>
+  <p style="position:relative; font-size:19px; color:#9CA3AF; max-width:560px; margin:0 auto; line-height:1.55;">Everything in FilmCatch happens in the real world. Here's the full loop — scan, walk, catch, collect, trade.</p>
+</div>
+
+<!-- steps -->
+<div style="padding:0 40px 40px; display:flex; flex-direction:column; gap:20px;">
+  <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+    <div style="display:grid; grid-template-columns:120px 1fr 300px; gap:32px; align-items:center; background:#111116; border:1px solid #1E1E2A; border-radius:20px; padding:36px 40px;">
+      <div style="font-family:'Space Grotesk'; font-weight:700; font-size:56px; color:{{ s.color }}; opacity:.9;">{{ s.num }}</div>
+      <div>
+        <h2 style="font-size:28px; letter-spacing:-.5px; margin-bottom:10px;">{{ s.title }}</h2>
+        <p style="color:#9CA3AF; font-size:16px; line-height:1.6; margin:0;">{{ s.body }}</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="font-size:12px; letter-spacing:1.5px; color:#4B5563; text-transform:uppercase; font-family:'Space Grotesk';">Good to know</div>
+        <div style="color:#9CA3AF; font-size:14px; line-height:1.55; border-left:2px solid {{ s.color }}; padding-left:14px;">{{ s.tip }}</div>
+      </div>
+    </div>
+  </sc-for>
+</div>
+
+<!-- rarity odds -->
+<div style="border-top:1px solid #14141c; background:#08080c;">
+  <div style="padding:64px 40px;">
+    <h2 style="font-size:34px; letter-spacing:-1px; margin-bottom:8px;">Know your odds</h2>
+    <p style="color:#9CA3AF; font-size:17px; margin:0 0 32px;">Every spawn rolls a rarity. Film hotspots at real cinemas tilt the odds toward the rare end.</p>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <sc-for list="{{ rarities }}" as="r" hint-placeholder-count="5">
+        <div style="display:grid; grid-template-columns:160px 1fr 90px; gap:20px; align-items:center;">
+          <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:{{ r.rc }};"><span style="width:9px; height:9px; border-radius:5px; background:{{ r.rc }};"></span>{{ r.label }}</span>
+          <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:{{ r.rc }}; width:{{ r.pct }};"></div></div>
+          <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">{{ r.chance }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:28px; display:flex; align-items:center; gap:14px; background:linear-gradient(120deg, rgba(96,165,250,.1), rgba(168,85,247,.1), rgba(245,158,11,.1)); border:1px solid #1E1E2A; border-radius:14px; padding:18px 22px;">
+      <div style="width:40px; height:56px; border-radius:6px; background:linear-gradient(135deg,#60a5fa,#A855F7,#F59E0B); box-shadow:0 0 18px rgba(168,85,247,.45); flex:none;"></div>
+      <div>
+        <b style="font-family:'Space Grotesk'; font-size:16px;">And then there's the Shiny.</b>
+        <div style="color:#9CA3AF; font-size:14px; margin-top:4px;">Any catch can roll holographic — an animated foil variant with its own mint number. Rare enough that you'll remember where you were.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- progression -->
+<div style="border-top:1px solid #14141c;">
+  <div style="padding:64px 40px;">
+    <h2 style="font-size:34px; letter-spacing:-1px; margin-bottom:8px;">Climb from Film Novice to Legend of the Reel</h2>
+    <p style="color:#9CA3AF; font-size:17px; margin:0 0 32px; max-width:640px;">Every catch earns XP. Level up to unlock new titles — a new one is never more than a few levels away — and watch your badge evolve from Bronze all the way to Mythic.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <sc-for list="{{ titles }}" as="t" hint-placeholder-count="9">
+        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV {{ t.min }}</span>{{ t.name }}</span>
+      </sc-for>
+      <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid rgba(245,158,11,.5); background:rgba(245,158,11,.1); font-size:14px; color:#FDE68A; font-weight:700;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#fbbf24;">LV 100</span>Legend of the Reel</span>
+    </div>
+  </div>
+</div>
+
+<!-- daily loop -->
+<div style="border-top:1px solid #14141c; background:#08080c;">
+  <div style="padding:64px 40px;">
+    <h2 style="font-size:34px; letter-spacing:-1px; margin-bottom:32px;">Worth coming back for</h2>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+      <div style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
+        <div style="font-size:26px; margin-bottom:12px;">🗓️</div>
+        <h3 style="font-size:18px; margin-bottom:8px;">Daily quests</h3>
+        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">Fresh objectives and login rewards every day. Streaks that actually feel worth keeping.</p>
+      </div>
+      <div style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
+        <div style="font-size:26px; margin-bottom:12px;">⚡</div>
+        <h3 style="font-size:18px; margin-bottom:8px;">Limited-time events</h3>
+        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">Boosted spawns and themed weekends put rare films within reach.</p>
+      </div>
+      <div style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
+        <div style="font-size:26px; margin-bottom:12px;">🧩</div>
+        <h3 style="font-size:18px; margin-bottom:8px;">Complete sets</h3>
+        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">Themed collections to finish — every set completed is bragging rights earned.</p>
+      </div>
+      <div style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
+        <div style="font-size:26px; margin-bottom:12px;">🏆</div>
+        <h3 style="font-size:18px; margin-bottom:8px;">Global leaderboard</h3>
+        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">See how your collection stacks up against collectors worldwide.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- cta -->
+<div style="padding:80px 40px; text-align:center; background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.16), transparent 60%);">
+  <img src="assets/splash-icon.png" style="width:56px; height:56px; margin-bottom:20px;" />
+  <h2 style="font-size:44px; letter-spacing:-1px; margin-bottom:14px;">Ready for your first catch?</h2>
+  <p style="color:#9CA3AF; font-size:18px; margin:0 auto 30px; max-width:460px;">Free to play. The map is already full.</p>
+  <div style="display:flex; gap:14px; justify-content:center;">
+    <a href="https://apps.apple.com/app/filmcatch-movie-collecting" style="background:#fff; color:#0D0D0F; padding:15px 26px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;" style-hover="background:#e5e7eb; color:#0D0D0F;"> Download for iPhone</a>
+    <a href="https://play.google.com/store/apps/details?id=com.filmcatch.app" style="background:#16161d; border:1px solid #1E1E2A; color:#fff; padding:15px 26px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;" style-hover="border-color:#3B82F6; color:#fff;"> Get it on Android</a>
+  </div>
+</div>
+
+<!-- footer -->
+<div style="border-top:1px solid #14141c;">
+  <div style="padding:26px 40px; display:flex; justify-content:space-between; align-items:center; color:#4B5563; font-size:13px;">
+    <span>© 2026 Myers Entertainment LLC · Bradenton, Florida</span>
+    <div style="display:flex; gap:20px;">
+      <a href="privacy.html" style="color:#6b7280;" style-hover="color:#fff;">Privacy Policy</a>
+      <a href="terms.html" style="color:#6b7280;" style-hover="color:#fff;">Terms of Service</a>
+      <a href="support.html" style="color:#6b7280;" style-hover="color:#fff;">Support</a>
+      <span>FilmCatch uses the TMDB API but is not endorsed or certified by TMDB.</span>
+    </div>
+  </div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const R = { common:'#9CA3AF', uncommon:'#22C55E', rare:'#3B82F6', epic:'#A855F7', legendary:'#F59E0B' };
+    return {
+      steps: [
+        { num:'01', color:'#60a5fa', title:'Scan your area', body:'Open the map and scan to reveal films hidden near your real location. Spawns appear within about 300 metres — and film hotspots at real cinemas draw the rarest finds.', tip:'Refresh to roll new spawns when the map feels picked over.' },
+        { num:'02', color:'#4ade80', title:'Walk into range', body:'Films are catchable once you\u2019re within 80 metres. The reach ring around you shows exactly what\u2019s in range — everything else is a reason to keep walking.', tip:'Stay aware of your surroundings — never catch and drive.' },
+        { num:'03', color:'#fbbf24', title:'Make the catch', body:'Tap a spawn to see the film, then catch it. Every catch is a reveal moment — rarity, mint number, genre badges, and full film details, straight onto your shelf.', tip:'Any catch can roll a holographic Shiny with animated foil.' },
+        { num:'04', color:'#a78bfa', title:'Build your collection', body:'Browse your catches in a grid, filter by rarity, and complete themed Sets. Duplicates aren\u2019t clutter — they\u2019re currency for the trade market.', tip:'Completing a Set earns rewards and permanent bragging rights.' },
+        { num:'05', color:'#f472b6', title:'Trade with collectors', body:'List any film from your collection and name your price in films, Tickets, or Gems. Bid in live auctions for prized catches, or gift films to friends to grow your crew.', tip:'Trades are protected — cheaters get reversed and suspended.' },
+      ],
+      rarities: [
+        { label:'COMMON', rc:R.common, chance:'55%', pct:'55%' },
+        { label:'UNCOMMON', rc:R.uncommon, chance:'28%', pct:'28%' },
+        { label:'RARE', rc:R.rare, chance:'13%', pct:'13%' },
+        { label:'EPIC', rc:R.epic, chance:'6%', pct:'6%' },
+        { label:'LEGENDARY', rc:R.legendary, chance:'4%', pct:'4%' },
+      ],
+      titles: [
+        { min:1, name:'Film Novice' }, { min:8, name:'Film Buff' }, { min:12, name:'Cinephile' },
+        { min:20, name:'Film Critic' }, { min:30, name:'Auteur' }, { min:42, name:'Master Archivist' },
+        { min:60, name:"Director's Circle" }, { min:74, name:'Festival Laureate' }, { min:90, name:'Keeper of the Canon' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
