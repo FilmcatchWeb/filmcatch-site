@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<title>FilmCatch — Catch movies in the real world</title>
+<meta name="description" content="FilmCatch turns your city into a movie-collecting game. Catch films spawning around you, chase holographic shinies, complete sets, and trade with collectors. From Myers Entertainment LLC.">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
 </head>
 <body>
-<x-dc>
-<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,38 +21,44 @@
   h1,h2,h3 { font-family: 'Space Grotesk', system-ui, sans-serif; margin: 0; }
   @keyframes fc-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes fc-pulse { 0%,100% { transform: scale(1); opacity: .55; } 50% { transform: scale(1.35); opacity: 0; } }
+  a[href] { transition: color .15s, background .15s, border-color .15s; }
+  .inner { padding-left: max(40px, calc(50vw - 560px)) !important; padding-right: max(40px, calc(50vw - 560px)) !important; }
+  @media (max-width: 820px) {
+    .m-grid { grid-template-columns: 1fr !important; }
+    .m-wrap { flex-wrap: wrap !important; row-gap: 10px !important; }
+    .inner { padding-left: 24px !important; padding-right: 24px !important; }
+    h1 { font-size: 40px !important; letter-spacing: -1px !important; }
+  }
 </style>
-</helmet>
 
-<div style="max-width:1120px; margin:0 auto; background:#0D0D0F; border-left:1px solid #1E1E2A; border-right:1px solid #1E1E2A; overflow:hidden; min-height:100vh;">
+<div style="background:#0D0D0F; overflow:hidden; min-height:100vh;">
   <!-- nav -->
-  <div style="display:flex; align-items:center; justify-content:space-between; padding:22px 40px; border-bottom:1px solid #14141c;">
+  <div class="inner" style="display:flex; align-items:center; justify-content:space-between; padding:22px 40px; border-bottom:1px solid #14141c;">
     <a href="index.html" style="display:flex; align-items:center; gap:10px; color:#fff;">
       <img src="assets/splash-icon.png" style="width:30px; height:30px;" />
       <span style="font-family:'Space Grotesk'; font-weight:700; font-size:20px;">Film<span style="color:#3B82F6;">Catch</span></span>
     </a>
-    <div style="display:flex; align-items:center; gap:30px; font-size:15px;">
-      <a href="how-it-works.html" style="color:#9CA3AF;" style-hover="color:#fff;">How it works</a>
-      <a href="#rarities" style="color:#9CA3AF;" style-hover="color:#fff;">Rarities</a>
-      <a href="#trading" style="color:#9CA3AF;" style-hover="color:#fff;">Trading</a>
-      <a href="support.html" style="color:#9CA3AF;" style-hover="color:#fff;">Support</a>
-      <a href="{{ appStoreUrl }}" style="background:#3B82F6; color:#fff; padding:9px 18px; border-radius:10px; font-weight:700; font-family:'Space Grotesk';" style-hover="background:#2563EB; color:#fff;">Get the app</a>
+    <div class="m-wrap" style="display:flex; align-items:center; gap:30px; font-size:15px;">
+      <a href="how-it-works.html" style="color:#9CA3AF;">How it works</a>
+      <a href="#rarities" style="color:#9CA3AF;">Rarities</a>
+      <a href="#trading" style="color:#9CA3AF;">Trading</a>
+      <a href="support.html" style="color:#9CA3AF;">Support</a>
+      <a href="#download" style="background:#3B82F6; color:#fff; padding:9px 18px; border-radius:10px; font-weight:700; font-family:'Space Grotesk';">Get the app</a>
     </div>
   </div>
   <!-- hero -->
-  <div style="display:grid; grid-template-columns:1.15fr .85fr; gap:40px; padding:70px 40px 60px; position:relative;">
+  <div class="m-grid inner" style="display:grid; grid-template-columns:1.15fr .85fr; gap:40px; padding:70px 40px 60px; position:relative;">
     <div style="position:absolute; top:-80px; left:-40px; width:420px; height:420px; background:radial-gradient(circle, rgba(59,130,246,0.22), transparent 70%); filter:blur(20px);"></div>
     <div style="position:relative; display:flex; flex-direction:column; gap:26px; justify-content:center;">
       <span style="align-self:flex-start; display:flex; align-items:center; gap:8px; font-size:13px; color:#93C5FD; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); padding:7px 14px; border-radius:999px; letter-spacing:.5px;">📍 Now catching in your city</span>
       <h1 style="font-size:62px; line-height:1.02; font-weight:700; letter-spacing:-1.5px;">Movies,<br>everywhere.</h1>
       <p style="font-size:19px; line-height:1.55; color:#9CA3AF; max-width:440px; margin:0;">FilmCatch turns your city into a movie-collecting game. Walk up, catch the films spawning near you, chase holographic shinies, and trade with collectors everywhere.</p>
       <div style="display:flex; gap:14px;">
-        <a href="{{ appStoreUrl }}" style="display:flex; align-items:center; gap:10px; background:#fff; color:#0D0D0F; padding:14px 22px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;" style-hover="background:#e5e7eb; color:#0D0D0F;"> App Store</a>
-        <a href="{{ playStoreUrl }}" style="display:flex; align-items:center; gap:10px; background:#16161d; border:1px solid #1E1E2A; color:#fff; padding:14px 22px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;" style-hover="border-color:#3B82F6; color:#fff;"> Google Play</a>
+        <span style="display:inline-flex; align-items:center; gap:10px; background:#fff; color:#0D0D0F; padding:14px 22px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;">📱 Coming soon to the App Store</span>
       </div>
-      <div style="display:flex; gap:28px; padding-top:8px; color:#6b7280; font-size:14px;">
-        <span><b style="color:#fff; font-family:'Space Grotesk';">12k+</b> films to catch</span>
-        <span><b style="color:#fff; font-family:'Space Grotesk';">4.9★</b> App Store</span>
+      <div class="m-wrap" style="display:flex; gap:28px; padding-top:8px; color:#6b7280; font-size:14px;">
+        <span><b style="color:#fff; font-family:'Space Grotesk';">1,000s</b> of films to catch</span>
+        <span><b style="color:#fff; font-family:'Space Grotesk';">5</b> rarity tiers</span>
         <span><b style="color:#fff; font-family:'Space Grotesk';">Free</b> to play</span>
       </div>
     </div>
@@ -65,9 +72,22 @@
         <div style="position:absolute; top:46%; left:50%; width:230px; height:230px; margin:-115px 0 0 -115px; border-radius:50%; border:1.5px solid rgba(125,170,255,.5); background:radial-gradient(circle,rgba(59,130,246,.12),transparent 72%);"></div>
         <div style="position:absolute; top:46%; left:50%; width:230px; height:230px; margin:-115px 0 0 -115px; border-radius:50%; border:1.5px solid rgba(125,170,255,.35); animation:fc-pulse 2.6s ease-out infinite;"></div>
         <div style="position:absolute; top:46%; left:50%; width:20px; height:20px; margin:-10px 0 0 -10px; border-radius:50%; background:#3B82F6; border:4px solid #cbd5e1;"></div>
-        <sc-for list="{{ spawns }}" as="s" hint-placeholder-count="8">
-          <div style="position:absolute; top:{{ s.t }}; left:{{ s.l }}; width:{{ s.w }}; height:{{ s.w }}; border-radius:50%; background:{{ s.bgc }}; border:1.5px solid {{ s.ring }}; box-shadow:{{ s.sh }}; display:flex; align-items:center; justify-content:center; font-size:{{ s.fs }};">{{ s.e }}<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:{{ s.dot }}; border:2px solid #123b36;"></span></div>
-        </sc-for>
+          <div style="position:absolute; top:13%; left:38%; width:34px; height:34px; border-radius:50%; background:#F59E0B2E; border:1.5px solid #F59E0BBF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:15px;">🎭<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#F59E0B; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:16%; left:56%; width:28px; height:28px; border-radius:50%; background:#9CA3AF2E; border:1.5px solid #9CA3AFBF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:13px;">👻<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#9CA3AF; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:29%; left:28%; width:34px; height:34px; border-radius:50%; background:#3B82F62E; border:1.5px solid #3B82F6BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:15px;">😂<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#3B82F6; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:28%; left:46%; width:32px; height:32px; border-radius:50%; background:#3B82F62E; border:1.5px solid #3B82F6BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:14px;">⚔️<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#3B82F6; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:35%; left:49%; width:38px; height:38px; border-radius:50%; background:#3B82F62E; border:1.5px solid #3B82F6BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:17px;">🐉<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#3B82F6; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:40%; left:60%; width:42px; height:42px; border-radius:50%; background:rgba(124,45,18,.88); border:1.5px solid #F59E0B; box-shadow:0 0 18px rgba(245,158,11,.65); display:flex; align-items:center; justify-content:center; font-size:19px;">🗺️<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#F59E0B; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:37%; left:25%; width:34px; height:34px; border-radius:50%; background:#3B82F62E; border:1.5px solid #3B82F6BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:15px;">👻<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#3B82F6; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:44%; left:35%; width:32px; height:32px; border-radius:50%; background:#3B82F62E; border:1.5px solid #3B82F6BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:14px;">⚔️<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#3B82F6; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:48%; left:28%; width:32px; height:32px; border-radius:50%; background:#22C55E2E; border:1.5px solid #22C55EBF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:14px;">👻<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#22C55E; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:54%; left:31%; width:32px; height:32px; border-radius:50%; background:#22C55E2E; border:1.5px solid #22C55EBF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:14px;">⚔️<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#22C55E; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:52%; left:62%; width:42px; height:42px; border-radius:50%; background:rgba(124,45,18,.88); border:1.5px solid #F59E0B; box-shadow:0 0 18px rgba(245,158,11,.65); display:flex; align-items:center; justify-content:center; font-size:19px;">💥<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#F59E0B; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:35%; left:83%; width:28px; height:28px; border-radius:50%; background:#A855F72E; border:1.5px solid #A855F7BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:13px;">🔮<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#A855F7; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:42%; left:5%; width:28px; height:28px; border-radius:50%; background:#9CA3AF2E; border:1.5px solid #9CA3AFBF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:13px;">💕<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#9CA3AF; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:60%; left:84%; width:30px; height:30px; border-radius:50%; background:#3B82F62E; border:1.5px solid #3B82F6BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:14px;">🎭<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#3B82F6; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:67%; left:18%; width:32px; height:32px; border-radius:50%; background:#A855F72E; border:1.5px solid #A855F7BF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:14px;">🎭<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#A855F7; border:2px solid #123b36;"></span></div>
+          <div style="position:absolute; top:72%; left:7%; width:28px; height:28px; border-radius:50%; background:#22C55E2E; border:1.5px solid #22C55EBF; box-shadow:none; display:flex; align-items:center; justify-content:center; font-size:13px;">🗺️<span style="position:absolute; top:-3px; right:-3px; width:10px; height:10px; border-radius:5px; background:#22C55E; border:2px solid #123b36;"></span></div>
         <div style="position:absolute; top:9px; left:16px; right:12px; display:flex; align-items:center; justify-content:space-between;">
           <span style="font-size:11px; font-weight:800; color:#fff;">3:04 <span style="font-size:8px;">➤</span></span>
           <span style="display:flex; align-items:center; gap:4px;">
@@ -103,33 +123,164 @@
   </div>
   <!-- poster marquee -->
   <div style="padding:10px 0 40px; overflow:hidden; border-top:1px solid #14141c;">
-    <div style="padding:24px 40px 14px; font-size:13px; letter-spacing:2px; color:#4B5563; text-transform:uppercase; font-family:'Space Grotesk';">Now spawning near you</div>
+    <div class="inner" style="padding:24px 40px 14px; font-size:13px; letter-spacing:2px; color:#4B5563; text-transform:uppercase; font-family:'Space Grotesk';">Now spawning near you</div>
     <div style="display:flex; width:max-content; gap:16px; animation:fc-marq 32s linear infinite;">
-      <sc-for list="{{ marquee }}" as="f" hint-placeholder-count="10">
         <div style="width:120px; flex:none;">
-          <div style="width:120px; height:168px; border-radius:8px; background:{{ f.bg }}; border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
-            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">{{ f.ini }}</span>
-            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">{{ f.yr }}</span>
-            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:{{ f.rc }}; box-shadow:0 0 8px {{ f.rc }};"></span>
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #f59e0b, #7c3a12); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">BR</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2017</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#3B82F6; box-shadow:0 0 8px #3B82F6;"></span>
           </div>
         </div>
-      </sc-for>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #2a2a2a, #050505); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">PA</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2019</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #c98a3f, #5c3a17); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">DU</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2021</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#A855F7; box-shadow:0 0 8px #A855F7;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #2b3a67, #7a2f52); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">LL</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2016</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#22C55E; box-shadow:0 0 8px #22C55E;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #1b2a3a, #050810); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">IN</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2014</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #3a5a3a, #16261a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">SA</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2001</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#A855F7; box-shadow:0 0 8px #A855F7;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #7a1f1f, #2a0a0a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">WH</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2014</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#3B82F6; box-shadow:0 0 8px #3B82F6;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #e0348b, #3a0a2a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">DR</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2011</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#3B82F6; box-shadow:0 0 8px #3B82F6;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #c2410c, #3a1405); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">MM</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2015</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#A855F7; box-shadow:0 0 8px #A855F7;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #b91c1c, #3a5a1a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">AM</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2001</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#22C55E; box-shadow:0 0 8px #22C55E;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #f59e0b, #7c3a12); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">BR</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2017</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#3B82F6; box-shadow:0 0 8px #3B82F6;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #2a2a2a, #050505); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">PA</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2019</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #c98a3f, #5c3a17); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">DU</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2021</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#A855F7; box-shadow:0 0 8px #A855F7;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #2b3a67, #7a2f52); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">LL</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2016</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#22C55E; box-shadow:0 0 8px #22C55E;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #1b2a3a, #050810); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">IN</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2014</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #3a5a3a, #16261a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">SA</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2001</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#A855F7; box-shadow:0 0 8px #A855F7;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #7a1f1f, #2a0a0a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">WH</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2014</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#3B82F6; box-shadow:0 0 8px #3B82F6;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #e0348b, #3a0a2a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">DR</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2011</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#3B82F6; box-shadow:0 0 8px #3B82F6;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #c2410c, #3a1405); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">MM</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2015</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#A855F7; box-shadow:0 0 8px #A855F7;"></span>
+          </div>
+        </div>
+        <div style="width:120px; flex:none;">
+          <div style="width:120px; height:168px; border-radius:8px; background:linear-gradient(160deg, #b91c1c, #3a5a1a); border:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;">
+            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:30px; color:rgba(255,255,255,.75); letter-spacing:2px;">AM</span>
+            <span style="font-size:11px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-top:4px;">2001</span>
+            <span style="position:absolute; top:8px; right:8px; width:9px; height:9px; border-radius:5px; background:#22C55E; box-shadow:0 0 8px #22C55E;"></span>
+          </div>
+        </div>
     </div>
   </div>
   <!-- how it works -->
-  <div style="padding:64px 40px; border-top:1px solid #14141c;">
+  <div class="inner" style="padding:64px 40px; border-top:1px solid #14141c;">
     <h2 style="font-size:38px; letter-spacing:-1px; margin-bottom:8px;">Every walk becomes a treasure hunt</h2>
     <p style="color:#9CA3AF; font-size:17px; margin:0 0 40px;">Three steps between you and your next legendary catch. <a href="how-it-works.html">See how it works →</a></p>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+    <div class="m-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
       <div style="background:#111116; border:1px solid #1E1E2A; border-radius:16px; padding:26px;">
         <div style="width:44px; height:44px; border-radius:12px; background:rgba(59,130,246,.14); color:#60a5fa; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">📡</div>
         <h3 style="font-size:20px; margin-bottom:8px;">Scan your area</h3>
-        <p style="color:#9CA3AF; font-size:15px; line-height:1.55; margin:0;">Reveal films hidden near your real location. Cinemas and landmarks spawn the rarest finds.</p>
+        <p style="color:#9CA3AF; font-size:15px; line-height:1.55; margin:0;">Reveal films hidden near your real location. Landmarks glow as hotspots — and after dark, the horror films come out.</p>
       </div>
       <div style="background:#111116; border:1px solid #1E1E2A; border-radius:16px; padding:26px;">
         <div style="width:44px; height:44px; border-radius:12px; background:rgba(34,197,94,.14); color:#4ade80; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">🚶</div>
         <h3 style="font-size:20px; margin-bottom:8px;">Walk into range</h3>
-        <p style="color:#9CA3AF; font-size:15px; line-height:1.55; margin:0;">Get within 80m and the catch unlocks. Every stroll is a chance at something great.</p>
+        <p style="color:#9CA3AF; font-size:15px; line-height:1.55; margin:0;">Get within 200m and the catch unlocks. Every stroll is a chance at something great.</p>
       </div>
       <div style="background:#111116; border:1px solid #1E1E2A; border-radius:16px; padding:26px;">
         <div style="width:44px; height:44px; border-radius:12px; background:rgba(245,158,11,.14); color:#fbbf24; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px;">🎞️</div>
@@ -139,133 +290,111 @@
     </div>
   </div>
   <!-- rarity strip -->
-  <div id="rarities" style="padding:56px 40px; border-top:1px solid #14141c; background:#08080c;">
+  <div id="rarities" class="inner" style="padding:56px 40px; border-top:1px solid #14141c; background:#08080c;">
     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
       <h2 style="font-size:30px; letter-spacing:-.5px;">Five tiers. One holographic dream.</h2>
-      <span style="color:#6b7280; font-size:14px;">Legendary spawn rate: 4%</span>
+      <span style="color:#6b7280; font-size:14px;">✨ Any catch can roll holographic</span>
     </div>
-    <div style="display:flex; gap:12px;">
-      <sc-for list="{{ rarities }}" as="r" hint-placeholder-count="5">
+    <div class="m-wrap" style="display:flex; gap:12px;">
         <div style="flex:1; border:1px solid #1E1E2A; border-radius:14px; padding:18px; background:#0D0D0F; display:flex; flex-direction:column; gap:10px;">
-          <span style="width:26px; height:26px; border-radius:8px; background:{{ r.rc }}; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0D0D0F; font-size:14px;">{{ r.letter }}</span>
-          <span style="font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:{{ r.rc }};">{{ r.label }}</span>
-          <span style="color:#6b7280; font-size:12px;">{{ r.chance }}</span>
+          <span style="width:26px; height:26px; border-radius:8px; background:#9CA3AF; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0D0D0F; font-size:14px;">C</span>
+          <span style="font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#9CA3AF;">COMMON</span>
+          <span style="color:#6b7280; font-size:12px;">Everyday catches</span>
         </div>
-      </sc-for>
+        <div style="flex:1; border:1px solid #1E1E2A; border-radius:14px; padding:18px; background:#0D0D0F; display:flex; flex-direction:column; gap:10px;">
+          <span style="width:26px; height:26px; border-radius:8px; background:#22C55E; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0D0D0F; font-size:14px;">U</span>
+          <span style="font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#22C55E;">UNCOMMON</span>
+          <span style="color:#6b7280; font-size:12px;">A nice find</span>
+        </div>
+        <div style="flex:1; border:1px solid #1E1E2A; border-radius:14px; padding:18px; background:#0D0D0F; display:flex; flex-direction:column; gap:10px;">
+          <span style="width:26px; height:26px; border-radius:8px; background:#3B82F6; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0D0D0F; font-size:14px;">R</span>
+          <span style="font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#3B82F6;">RARE</span>
+          <span style="color:#6b7280; font-size:12px;">Worth the detour</span>
+        </div>
+        <div style="flex:1; border:1px solid #1E1E2A; border-radius:14px; padding:18px; background:#0D0D0F; display:flex; flex-direction:column; gap:10px;">
+          <span style="width:26px; height:26px; border-radius:8px; background:#A855F7; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0D0D0F; font-size:14px;">E</span>
+          <span style="font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#A855F7;">EPIC</span>
+          <span style="color:#6b7280; font-size:12px;">A great week</span>
+        </div>
+        <div style="flex:1; border:1px solid #1E1E2A; border-radius:14px; padding:18px; background:#0D0D0F; display:flex; flex-direction:column; gap:10px;">
+          <span style="width:26px; height:26px; border-radius:8px; background:#F59E0B; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0D0D0F; font-size:14px;">L</span>
+          <span style="font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#F59E0B;">LEGENDARY</span>
+          <span style="color:#6b7280; font-size:12px;">You'll remember it</span>
+        </div>
+    </div>
+    <div style="margin-top:18px; display:flex; align-items:center; gap:14px; background:linear-gradient(120deg, rgba(245,158,11,.08), rgba(253,230,138,.06)); border:1px solid rgba(245,158,11,.35); border-radius:14px; padding:18px 22px;">
+      <div style="width:40px; height:56px; border-radius:6px; background:linear-gradient(135deg,#FDE68A,#F59E0B,#B45309); box-shadow:0 0 18px rgba(245,158,11,.4); flex:none;"></div>
+      <div>
+        <b style="font-family:'Space Grotesk'; font-size:16px; color:#FDE68A;">PREMIERE editions</b>
+        <div style="color:#9CA3AF; font-size:14px; margin-top:4px;">Brand-new releases spawn as gold-badged PREMIERE cards for their first 90 days only. Catch one in the window and the badge is yours forever.</div>
+      </div>
     </div>
   </div>
   <!-- economy of collectors -->
-  <div id="trading" style="padding:64px 40px; border-top:1px solid #14141c;">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+  <div id="trading" class="inner" style="padding:64px 40px; border-top:1px solid #14141c;">
+    <div class="m-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
       <div>
         <span style="font-size:13px; letter-spacing:2px; color:#60a5fa; text-transform:uppercase; font-family:'Space Grotesk';">Trading</span>
         <h2 style="font-size:38px; letter-spacing:-1px; margin:14px 0 14px;">A real economy of collectors</h2>
-        <p style="color:#9CA3AF; font-size:17px; line-height:1.6; margin:0 0 26px; max-width:460px;">List any film from your collection and name your price — films, Tickets, or Gems. Bid in live auctions for prized catches. Gift films to friends and grow your crew.</p>
+        <p style="color:#9CA3AF; font-size:17px; line-height:1.6; margin:0 0 26px; max-width:460px;">List any film from your collection and set your Ticket price, or run a live auction with a Buy Now option. Gift films, Tickets, and Gems to friends and grow your crew.</p>
         <div style="display:flex; flex-direction:column; gap:14px;">
           <div style="display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:10px; background:rgba(59,130,246,.14); color:#60a5fa; display:flex; align-items:center; justify-content:center; font-size:19px; flex:none;">🔄</div>
-            <div><b style="font-family:'Space Grotesk'; font-size:16px;">List &amp; name your price</b><div style="color:#9CA3AF; font-size:14px;">Any film — priced in films, Tickets, or Gems.</div></div>
+            <div><b style="font-family:'Space Grotesk'; font-size:16px;">List &amp; name your price</b><div style="color:#9CA3AF; font-size:14px;">Any film — you set the Ticket price.</div></div>
           </div>
           <div style="display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:10px; background:rgba(245,158,11,.14); color:#fbbf24; display:flex; align-items:center; justify-content:center; font-size:19px; flex:none;">🔨</div>
-            <div><b style="font-family:'Space Grotesk'; font-size:16px;">Live auctions</b><div style="color:#9CA3AF; font-size:14px;">Bid in real time on prized catches.</div></div>
+            <div><b style="font-family:'Space Grotesk'; font-size:16px;">Live auctions</b><div style="color:#9CA3AF; font-size:14px;">Bid in real time — or end it early with Buy Now.</div></div>
           </div>
           <div style="display:flex; align-items:center; gap:14px;">
             <div style="width:40px; height:40px; border-radius:10px; background:rgba(34,197,94,.14); color:#4ade80; display:flex; align-items:center; justify-content:center; font-size:19px; flex:none;">🎁</div>
-            <div><b style="font-family:'Space Grotesk'; font-size:16px;">Gift to friends</b><div style="color:#9CA3AF; font-size:14px;">Grow your crew and trade circle.</div></div>
+            <div><b style="font-family:'Space Grotesk'; font-size:16px;">Gift to friends</b><div style="color:#9CA3AF; font-size:14px;">Send films, Tickets, or Gems to friends.</div></div>
           </div>
         </div>
       </div>
       <div style="background:#111116; border:1px solid #1E1E2A; border-radius:18px; padding:24px;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
           <span style="font-family:'Space Grotesk'; font-weight:700; font-size:15px;">Trade listing</span>
-          <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#4ade80;"><span style="width:7px; height:7px; border-radius:4px; background:#22C55E; box-shadow:0 0 8px #22C55E;"></span>3 offers</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#4ade80;"><span style="width:7px; height:7px; border-radius:4px; background:#22C55E; box-shadow:0 0 8px #22C55E;"></span>3 bids</span>
         </div>
         <div style="display:flex; gap:16px; align-items:center; padding-bottom:18px; border-bottom:1px solid #1E1E2A;">
           <div style="width:70px; height:98px; border-radius:8px; background:linear-gradient(160deg,#2a2a2a,#050505); flex:none; display:flex; flex-direction:column; align-items:center; justify-content:center;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:22px; color:rgba(255,255,255,.75);">PA</span><span style="font-size:10px; color:rgba(255,255,255,.4);">2019</span></div>
           <div style="flex:1;">
             <div style="font-family:'Space Grotesk'; font-weight:700; font-size:17px;">Parasite</div>
             <div style="display:inline-flex; align-items:center; gap:5px; margin:8px 0; border:1px solid #F59E0B; background:#78350F; color:#FDE68A; font-size:9px; font-weight:700; letter-spacing:1px; padding:3px 7px; border-radius:4px;"><span style="width:5px;height:5px;border-radius:3px;background:#F59E0B;"></span>LEGENDARY</div>
-            <div style="color:#6b7280; font-size:13px;">Mint #042 · Holographic</div>
+            <div style="color:#6b7280; font-size:13px;">Holographic edition</div>
           </div>
         </div>
         <div style="margin-top:16px; background:#0D0D0F; border:1px solid #1E1E2A; border-radius:12px; padding:14px;">
-          <div style="color:#6b7280; font-size:12px; margin-bottom:6px;">Seller wants</div>
-          <div style="font-size:14px; color:#d1d5db;">Any Epic sci-fi film <span style="color:#facc15;">+ 🎟️ 250</span> <span style="color:#67E8F9;">+ 💎 2</span></div>
+          <div style="color:#6b7280; font-size:12px; margin-bottom:6px;">Buy Now</div>
+          <div style="font-size:14px; color:#d1d5db;"><span style="color:#facc15;">🎟️ 2,500</span> — or take your shot in the auction</div>
         </div>
         <div style="display:flex; align-items:center; justify-content:space-between; margin-top:16px;">
-          <div><div style="color:#6b7280; font-size:12px;">Your offer</div><div style="font-family:'Space Grotesk'; font-weight:700; font-size:16px;">Dune (Epic) <span style="color:#facc15; font-weight:600;">+ 🎟️ 250</span></div></div>
-          <div style="background:#3B82F6; color:#fff; font-family:'Space Grotesk'; font-weight:700; font-size:14px; padding:12px 20px; border-radius:12px;">Send offer</div>
+          <div><div style="color:#6b7280; font-size:12px;">Your bid</div><div style="font-family:'Space Grotesk'; font-weight:700; font-size:16px;"><span style="color:#facc15;">🎟️ 1,900</span> <span style="color:#6b7280; font-size:13px; font-weight:600;">high bid 1,850</span></div></div>
+          <div style="background:#3B82F6; color:#fff; font-family:'Space Grotesk'; font-weight:700; font-size:14px; padding:12px 20px; border-radius:12px;">Place bid</div>
         </div>
       </div>
     </div>
   </div>
   <!-- cta -->
-  <div id="download" style="padding:72px 40px; text-align:center; background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.16), transparent 60%);">
+  <div id="download" class="inner" style="padding:72px 40px; text-align:center; background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.16), transparent 60%);">
     <img src="assets/splash-icon.png" style="width:56px; height:56px; margin-bottom:20px;" />
     <h2 style="font-size:44px; letter-spacing:-1px; margin-bottom:14px;">Start your collection today</h2>
     <p style="color:#9CA3AF; font-size:18px; margin:0 auto 30px; max-width:460px;">Free to play. The next legendary could be one block away.</p>
     <div style="display:flex; gap:14px; justify-content:center;">
-      <a href="{{ appStoreUrl }}" style="background:#fff; color:#0D0D0F; padding:15px 26px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;" style-hover="background:#e5e7eb; color:#0D0D0F;"> Download for iPhone</a>
-      <a href="{{ playStoreUrl }}" style="background:#16161d; border:1px solid #1E1E2A; color:#fff; padding:15px 26px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;" style-hover="border-color:#3B82F6; color:#fff;"> Get it on Android</a>
+      <span style="display:inline-flex; align-items:center; gap:10px; background:#fff; color:#0D0D0F; padding:15px 26px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;">📱 Coming soon to the App Store</span>
     </div>
   </div>
   <!-- footer -->
-  <div style="padding:26px 40px; border-top:1px solid #14141c; display:flex; justify-content:space-between; color:#4B5563; font-size:13px;">
+  <div class="m-wrap inner" style="padding:26px 40px; border-top:1px solid #14141c; display:flex; justify-content:space-between; color:#4B5563; font-size:13px;">
     <span>© 2026 Myers Entertainment LLC · Bradenton, Florida</span>
     <div style="display:flex; gap:16px;">
-      <a href="privacy.html" style="color:#6b7280;" style-hover="color:#fff;">Privacy</a>
-      <a href="terms.html" style="color:#6b7280;" style-hover="color:#fff;">Terms</a>
-      <a href="support.html" style="color:#6b7280;" style-hover="color:#fff;">Support</a>
+      <a href="privacy.html" style="color:#6b7280;">Privacy</a>
+      <a href="terms.html" style="color:#6b7280;">Terms</a>
+      <a href="support.html" style="color:#6b7280;">Support</a>
       <span>Uses the TMDB API</span>
     </div>
   </div>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;appStoreUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://apps.apple.com/app/filmcatch-movie-collecting&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Store links&quot;},&quot;playStoreUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://play.google.com/store/apps/details?id=com.filmcatch.app&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Store links&quot;}}">
-class Component extends DCLogic {
-  renderVals() {
-    const R = { common:'#9CA3AF', uncommon:'#22C55E', rare:'#3B82F6', epic:'#A855F7', legendary:'#F59E0B' };
-    const grad = (a, b) => `linear-gradient(160deg, ${a}, ${b})`;
-    const mk = (ini, yr, rar, a, b) => ({ ini, yr, rc: R[rar], bg: grad(a, b) });
-    const marquee = [
-      mk('BR','2017','rare','#f59e0b','#7c3a12'), mk('PA','2019','legendary','#2a2a2a','#050505'),
-      mk('DU','2021','epic','#c98a3f','#5c3a17'), mk('LL','2016','uncommon','#2b3a67','#7a2f52'),
-      mk('IN','2014','legendary','#1b2a3a','#050810'), mk('SA','2001','epic','#3a5a3a','#16261a'),
-      mk('WH','2014','rare','#7a1f1f','#2a0a0a'), mk('DR','2011','rare','#e0348b','#3a0a2a'),
-      mk('MM','2015','epic','#c2410c','#3a1405'), mk('AM','2001','uncommon','#b91c1c','#3a5a1a'),
-    ];
-    const RC = { common:'#9CA3AF', uncommon:'#22C55E', rare:'#3B82F6', epic:'#A855F7', legendary:'#F59E0B' };
-    const sp = (e, t, l, w, rar, hot) => ({
-      e, t, l, w: w + 'px', fs: Math.round(w * .45) + 'px',
-      ring: hot ? '#F59E0B' : RC[rar] + 'BF',
-      bgc: hot ? 'rgba(124,45,18,.88)' : RC[rar] + '2E',
-      sh: hot ? '0 0 18px rgba(245,158,11,.65)' : 'none',
-      dot: hot ? '#F59E0B' : RC[rar],
-    });
-    const spawns = [
-      sp('🎭','13%','38%',34,'legendary'), sp('👻','16%','56%',28,'common'),
-      sp('😂','29%','28%',34,'rare'), sp('⚔️','28%','46%',32,'rare'),
-      sp('🐉','35%','49%',38,'rare'), sp('🗺️','40%','60%',42,'legendary',true), sp('👻','37%','25%',34,'rare'),
-      sp('⚔️','44%','35%',32,'rare'), sp('👻','48%','28%',32,'uncommon'), sp('⚔️','54%','31%',32,'uncommon'),
-      sp('💥','52%','62%',42,'legendary',true), sp('🔮','35%','83%',28,'epic'), sp('💕','42%','5%',28,'common'),
-      sp('🎭','60%','84%',30,'rare'), sp('🎭','67%','18%',32,'epic'), sp('🗺️','72%','7%',28,'uncommon'),
-    ];
-    return {
-      spawns,
-      marquee: marquee.concat(marquee),
-      rarities: [
-        { label:'COMMON', letter:'C', rc:R.common, chance:'55% spawn rate' },
-        { label:'UNCOMMON', letter:'U', rc:R.uncommon, chance:'28% spawn rate' },
-        { label:'RARE', letter:'R', rc:R.rare, chance:'13% spawn rate' },
-        { label:'EPIC', letter:'E', rc:R.epic, chance:'6% spawn rate' },
-        { label:'LEGENDARY', letter:'L', rc:R.legendary, chance:'4% spawn rate' },
-      ],
-      appStoreUrl: this.props.appStoreUrl ?? 'https://apps.apple.com/app/filmcatch-movie-collecting',
-      playStoreUrl: this.props.playStoreUrl ?? 'https://play.google.com/store/apps/details?id=com.filmcatch.app',
-    };
-  }
-}
-</script>
 </body>
 </html>

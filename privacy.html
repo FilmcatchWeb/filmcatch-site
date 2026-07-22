@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<title>FilmCatch — Privacy Policy</title>
+<meta name="description" content="How FilmCatch (Myers Entertainment LLC) collects, uses, and protects your data.">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
 </head>
 <body>
-<x-dc>
-<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,21 +18,28 @@
   a { color: #3B82F6; text-decoration: none; }
   a:hover { color: #60a5fa; }
   h1,h2,h3 { font-family: 'Space Grotesk', system-ui, sans-serif; margin: 0; }
+  a[href] { transition: color .15s, background .15s, border-color .15s; }
+  .inner { padding-left: max(40px, calc(50vw - 560px)) !important; padding-right: max(40px, calc(50vw - 560px)) !important; }
+  @media (max-width: 820px) {
+    .m-grid { grid-template-columns: 1fr !important; }
+    .m-wrap { flex-wrap: wrap !important; row-gap: 10px !important; }
+    .inner { padding-left: 24px !important; padding-right: 24px !important; }
+    h1 { font-size: 40px !important; letter-spacing: -1px !important; }
+  }
 </style>
-</helmet>
 
-<div style="max-width:1120px; margin:0 auto; background:#0D0D0F; border-left:1px solid #1E1E2A; border-right:1px solid #1E1E2A; overflow:hidden; min-height:100vh;">
+<div style="background:#0D0D0F; overflow:hidden; min-height:100vh;">
 
 <div style="border-bottom:1px solid #14141c;">
-  <div style="display:flex; align-items:center; justify-content:space-between; padding:22px 40px;">
+  <div class="inner" style="display:flex; align-items:center; justify-content:space-between; padding:22px 40px;">
     <a href="index.html" style="display:flex; align-items:center; gap:10px; color:#fff;">
       <img src="assets/splash-icon.png" style="width:30px; height:30px;" />
       <span style="font-family:'Space Grotesk'; font-weight:700; font-size:20px;">Film<span style="color:#3B82F6;">Catch</span></span>
     </a>
     <div style="display:flex; align-items:center; gap:30px; font-size:15px;">
-      <a href="how-it-works.html" style="color:#9CA3AF;" style-hover="color:#fff;">How it works</a>
-      <a href="support.html" style="color:#9CA3AF;" style-hover="color:#fff;">Support</a>
-      <a href="https://apps.apple.com/app/filmcatch-movie-collecting" style="background:#3B82F6; color:#fff; padding:9px 18px; border-radius:10px; font-weight:700; font-family:'Space Grotesk';" style-hover="background:#2563EB; color:#fff;">Get the app</a>
+      <a href="how-it-works.html" style="color:#9CA3AF;">How it works</a>
+      <a href="support.html" style="color:#9CA3AF;">Support</a>
+      <a href="index.html#download" style="background:#3B82F6; color:#fff; padding:9px 18px; border-radius:10px; font-weight:700; font-family:'Space Grotesk';">Get the app</a>
     </div>
   </div>
 </div>
@@ -68,13 +76,12 @@
   <div style="max-width:1120px; margin:0 auto; padding:26px 40px; display:flex; justify-content:space-between; color:#4B5563; font-size:13px;">
     <span>© 2026 Myers Entertainment LLC · Bradenton, Florida</span>
     <div style="display:flex; gap:16px;">
-      <a href="privacy.html" style="color:#6b7280;" style-hover="color:#fff;">Privacy</a>
-      <a href="terms.html" style="color:#6b7280;" style-hover="color:#fff;">Terms</a>
-      <a href="support.html" style="color:#6b7280;" style-hover="color:#fff;">Support</a>
+      <a href="privacy.html" style="color:#6b7280;">Privacy</a>
+      <a href="terms.html" style="color:#6b7280;">Terms</a>
+      <a href="support.html" style="color:#6b7280;">Support</a>
     </div>
   </div>
 </div>
 </div>
-</x-dc>
 </body>
 </html>
