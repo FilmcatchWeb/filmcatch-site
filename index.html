@@ -41,6 +41,16 @@
     .inner { padding-left: 24px !important; padding-right: 24px !important; }
     h1 { font-size: 40px !important; letter-spacing: -1px !important; }
   }
+  @media (max-width: 640px) {
+    .fc-nav .m-wrap { gap: 14px !important; font-size: 13px !important; }
+    .fc-nav a[href="#rarities"], .fc-nav a[href="#trading"] { display: none !important; }
+    .fc-nav a[href="#download"] { padding: 8px 13px !important; }
+    .fc-nav .inner, .inner { padding-left: 18px !important; padding-right: 18px !important; }
+    h1 { font-size: 34px !important; }
+    .inner h2 { font-size: 27px !important; letter-spacing: -.5px !important; }
+    .fc-tiers > div { flex: 1 1 45% !important; }
+    .m-grid.inner, .inner.m-grid { padding-top: 44px !important; padding-bottom: 44px !important; }
+  }
 </style>
 
 <div style="background:#0D0D0F; overflow-x:clip; min-height:100vh;">
@@ -326,7 +336,7 @@
     <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
       <h2 style="font-size:30px; letter-spacing:-.5px;">Not every catch is equal</h2>
     </div>
-    <div class="m-wrap" style="display:flex; gap:12px;">
+    <div class="m-wrap fc-tiers" style="display:flex; gap:12px;">
         <div style="flex:1; border:1px solid #1E1E2A; border-radius:14px; padding:18px; background:#0D0D0F; display:flex; flex-direction:column; gap:10px;">
           <span style="width:26px; height:26px; border-radius:8px; background:#9CA3AF; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:#0D0D0F; font-size:14px;">C</span>
           <span style="font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#9CA3AF;">COMMON</span>

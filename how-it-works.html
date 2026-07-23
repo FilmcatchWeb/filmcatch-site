@@ -58,6 +58,18 @@
     .inner { padding-left: 24px !important; padding-right: 24px !important; }
     h1 { font-size: 40px !important; letter-spacing: -1px !important; }
   }
+  @media (max-width: 640px) {
+    .fc-nav .m-wrap { gap: 14px !important; font-size: 13px !important; }
+    .fc-nav a[href="index.html#rarities"], .fc-nav a[href="index.html#trading"] { display: none !important; }
+    .fc-nav a[href="index.html#download"] { padding: 8px 13px !important; }
+    .fc-nav .inner, .inner { padding-left: 18px !important; padding-right: 18px !important; }
+    h1 { font-size: 32px !important; }
+    .inner > h2 { font-size: 26px !important; letter-spacing: -.5px !important; }
+    .fc-odds { grid-template-columns: 110px 1fr !important; gap: 8px 14px !important; }
+    .fc-odds span:first-child { font-size: 12px !important; }
+    .fc-odds span:last-child { grid-column: 1 / -1; text-align: left !important; font-size: 13px !important; margin-top: -4px; color: #6b7280 !important; }
+    .fc-odds { margin-bottom: 8px; }
+  }
 </style>
 
 <div style="background:#0D0D0F; overflow-x:clip; min-height:100vh;">
@@ -240,27 +252,27 @@
     <h2 style="font-size:34px; letter-spacing:-1px; margin-bottom:8px;">How rarity works</h2>
     <p style="color:#9CA3AF; font-size:17px; margin:0 0 32px;">A film’s tier is earned from its real-world prestige — critical acclaim and popularity decide how rare it spawns. And after dark, the horror films come out to play.</p>
     <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
+        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
           <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#9CA3AF;"><span style="width:9px; height:9px; border-radius:5px; background:#9CA3AF;"></span>COMMON</span>
           <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#9CA3AF; width:55%;"></div></div>
           <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">You'll see these everywhere</span>
         </div>
-        <div style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
+        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
           <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#22C55E;"><span style="width:9px; height:9px; border-radius:5px; background:#22C55E;"></span>UNCOMMON</span>
           <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#22C55E; width:28%;"></div></div>
           <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">Every few catches</span>
         </div>
-        <div style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
+        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
           <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#3B82F6;"><span style="width:9px; height:9px; border-radius:5px; background:#3B82F6;"></span>RARE</span>
           <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#3B82F6; width:13%;"></div></div>
           <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">More... what's the word? Rare.</span>
         </div>
-        <div style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
+        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
           <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#A855F7;"><span style="width:9px; height:9px; border-radius:5px; background:#A855F7;"></span>EPIC</span>
           <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#A855F7; width:6%;"></div></div>
           <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">Few and far between</span>
         </div>
-        <div style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
+        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr minmax(190px,max-content); gap:20px; align-items:center;">
           <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#F59E0B;"><span style="width:9px; height:9px; border-radius:5px; background:#F59E0B;"></span>LEGENDARY</span>
           <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#F59E0B; width:4%;"></div></div>
           <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">Tell your friends you hit it big!</span>
