@@ -9,221 +9,490 @@
 <meta property="og:description" content="The full FilmCatch loop: scan your area, walk into range, catch films, build your collection, and trade with collectors worldwide.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FilmCatch">
-<meta property="og:image" content="assets/icon.png">
+<meta property="og:image" content="assets/app-icon.png">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#0D0D0F">
-<link rel="icon" type="image/png" href="assets/icon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
-</head>
-<body>
+<meta name="theme-color" content="#0A0A10">
+<link rel="icon" href="assets/app-icon.png">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
 <style>
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: #06060a; color: #fff; font-family: 'Manrope', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  a { color: #3B82F6; text-decoration: none; }
-  a:hover { color: #60a5fa; }
-  h1,h2,h3 { font-family: 'Space Grotesk', system-ui, sans-serif; margin: 0; }
-  @keyframes fc-pulse { 0%,100% { transform: scale(1); opacity: .55; } 50% { transform: scale(1.35); opacity: 0; } }
-  a[href] { transition: color .15s, background .15s, border-color .15s; }
-  .fc-card { transition: border-color .2s ease, transform .2s ease; }
-  .fc-card:hover { border-color: #2E2E42 !important; transform: translateY(-2px); }
-  .fc-nav { position: sticky; top: 0; z-index: 50; background: rgba(13,13,15,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-  @keyframes fc-shine { 0% { left: -60%; } 55% { left: 130%; } 100% { left: 130%; } }
-  @keyframes fc-pop { 0% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.25); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
-  @keyframes fc-radar { 0% { transform: scale(.1); opacity: .8; } 100% { transform: scale(2.6); opacity: 0; } }
-  @keyframes fc-prog { from { width: 0; } to { width: 100%; } }
-  @keyframes fc-stroll { 0% { offset-distance: 0%; } 20% { offset-distance: 0%; } 90% { offset-distance: 100%; } 100% { offset-distance: 100%; } }
-  @keyframes fc-walker { 0% { transform: translate(0,0); } 20% { transform: translate(0,0); } 90% { transform: translate(118px,-210px); } 100% { transform: translate(118px,-210px); } }
-  @keyframes fc-burst { 0% { transform: scale(.2); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
-  @keyframes fc-reveal { 0% { transform: rotateY(90deg) scale(.7); opacity: 0; } 45% { transform: rotateY(90deg) scale(.7); opacity: 0; } 75% { transform: rotateY(-12deg) scale(1.06); opacity: 1; } 100% { transform: rotateY(0) scale(1); opacity: 1; } }
-  @keyframes fc-rise { 0% { transform: translateY(14px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
-  @keyframes fc-swapl { 0%,25% { transform: translateX(0); } 60%,100% { transform: translateX(118px); } }
-  @keyframes fc-swapr { 0%,25% { transform: translateX(0); } 60%,100% { transform: translateX(-118px); } }
-  .fc-scene { display: none; position: absolute; inset: 0; }
-  .fc-scene.on { display: block; }
-  .fc-step { cursor: pointer; border: 1px solid #1E1E2A; background: #111116; border-radius: 14px; padding: 14px 20px; transition: border-color .25s, background .25s; position: relative; overflow: hidden; }
-  .fc-step .fc-step-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s ease; }
-  .fc-step .fc-step-body > div { overflow: hidden; }
-  .fc-step.on { border-color: #2E2E42; background: #14141b; }
-  .fc-step.on .fc-step-body { grid-template-rows: 1fr; }
-  .fc-step .fc-bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; }
-  .fc-step.on .fc-bar { animation: fc-prog 5s linear forwards; }
-  .inner { padding-left: max(40px, calc(50vw - 560px)) !important; padding-right: max(40px, calc(50vw - 560px)) !important; }
-  @media (max-width: 820px) {
-    .m-grid { grid-template-columns: 1fr !important; }
-    .m-wrap { flex-wrap: wrap !important; row-gap: 10px !important; }
-    .inner { padding-left: 24px !important; padding-right: 24px !important; }
-    h1 { font-size: 40px !important; letter-spacing: -1px !important; }
+  :root{
+    --bg:#0A0A10; --surface:#13131C; --surface2:#181822; --line:rgba(255,255,255,.09);
+    --text:#F4F2EC; --muted:#9A98A8; --blue:#3B82F6; --blue-deep:#1D4ED8;
+    --gold:#E8B84B; --gold-deep:#B8860B;
+    --common:#9CA3AF; --uncommon:#22C55E; --rare:#3B82F6; --epic:#A855F7; --legendary:#F59E0B;
   }
-  @media (max-width: 640px) {
-    .fc-nav .m-wrap { gap: 14px !important; font-size: 13px !important; }
-    .fc-nav a[href="index.html#rarities"], .fc-nav a[href="index.html#trading"] { display: none !important; }
-    .fc-nav a[href="index.html#download"] { padding: 8px 13px !important; }
-    .fc-nav .inner, .inner { padding-left: 18px !important; padding-right: 18px !important; }
-    h1 { font-size: 32px !important; }
-    .inner > h2 { font-size: 26px !important; letter-spacing: -.5px !important; }
-    .fc-odds { grid-template-columns: 110px 1fr !important; gap: 8px 14px !important; }
-    .fc-odds span:first-child { font-size: 12px !important; }
-    .fc-odds span:last-child { grid-column: 1 / -1; text-align: left !important; font-size: 13px !important; margin-top: -4px; color: #6b7280 !important; }
-    .fc-odds { margin-bottom: 8px; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:"Bricolage Grotesque",Georgia,serif; font-size:17px; line-height:1.6;
+    overflow-x:hidden;
   }
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:999; opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  .marquee-label{
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:12px;
+    letter-spacing:.32em; text-transform:uppercase; color:var(--gold);
+    display:flex; align-items:center; gap:14px;
+  }
+  .marquee-label::before,.marquee-label::after{
+    content:""; height:1px; width:34px; background:linear-gradient(90deg,transparent,var(--gold));
+  }
+  .marquee-label::after{background:linear-gradient(90deg,var(--gold),transparent)}
+
+  .stub{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:13px; letter-spacing:.08em;
+    color:#0A0A10; background:var(--gold);
+    padding:15px 26px; position:relative;
+    border-radius:6px;
+    -webkit-mask:radial-gradient(circle 7px at 0 50%,transparent 6.5px,#000 7px) left,
+                 radial-gradient(circle 7px at 100% 50%,transparent 6.5px,#000 7px) right;
+    -webkit-mask-size:51% 100%; -webkit-mask-repeat:no-repeat;
+    mask:radial-gradient(circle 7px at 0 50%,transparent 6.5px,#000 7px) left,
+         radial-gradient(circle 7px at 100% 50%,transparent 6.5px,#000 7px) right;
+    mask-size:51% 100%; mask-repeat:no-repeat;
+    transition:transform .15s ease;
+  }
+  .stub:hover{transform:translateY(-2px)}
+  .stub img{width:18px;height:18px}
+
+  .perf{
+    height:26px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    background-image:radial-gradient(circle 4px, rgba(255,255,255,.13) 3.4px, transparent 4px);
+    background-size:26px 26px; background-position:center;
+  }
+
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:15px 28px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,10,16,.82);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  }
+  .brand{display:flex; align-items:center; gap:11px}
+  .brand img{width:30px;height:30px;border-radius:8px}
+  .brand span{font-family:"Unbounded",sans-serif; font-weight:700; font-size:15px; letter-spacing:.04em}
+  .brand span b{color:var(--blue); font-weight:700}
+  .nav-links{display:flex; align-items:center; gap:26px; font-size:14.5px; color:var(--muted)}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{
+    font-family:"Unbounded",sans-serif; font-size:12px; font-weight:500; color:#fff;
+    background:var(--blue); padding:9px 18px; border-radius:999px;
+  }
+  @media(max-width:760px){
+    .nav-links a:not(.nav-cta){display:none}
+    nav{padding:12px 20px}
+  }
+  @media(max-width:420px){
+    .stub{font-size:11.5px; padding:13px 18px; letter-spacing:.06em}
+  }
+
+  section{padding:72px 0; scroll-margin-top:56px}
+  .sec-head{margin-bottom:44px}
+  h2{font-size:clamp(28px,3.6vw,40px); font-weight:800; letter-spacing:-.015em; line-height:1.1; margin-top:16px; text-wrap:balance}
+  .sec-head p{color:var(--muted); margin-top:12px; max-width:60ch}
+
+  /* ── the loop: steps + sticky phone ─────────────── */
+  .loop{display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:52px; align-items:start; padding:52px 0 64px}
+  @media(max-width:860px){.loop{grid-template-columns:1fr}}
+  .loop h1{font-size:clamp(30px,4.4vw,46px); font-weight:800; letter-spacing:-.02em; line-height:1.06; margin:16px 0 26px; text-wrap:balance}
+  .fc-step{
+    cursor:pointer; border:1px solid var(--line); background:var(--surface);
+    border-radius:14px; padding:16px 20px; position:relative; overflow:hidden;
+    transition:border-color .25s, background .25s; margin-bottom:12px;
+  }
+  .fc-step:hover{border-color:rgba(255,255,255,.18)}
+  .fc-step .fc-step-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .45s ease}
+  .fc-step .fc-step-body > div{overflow:hidden}
+  .fc-step.on{border-color:rgba(255,255,255,.18); background:var(--surface2)}
+  .fc-step.on .fc-step-body{grid-template-rows:1fr}
+  .fc-step .fc-bar{position:absolute; left:0; bottom:0; height:3px; width:0}
+  .fc-step.on .fc-bar{animation:fc-prog 5s linear forwards}
+  .fc-step .no{
+    font-family:"Unbounded",sans-serif; font-weight:700; font-size:12px; letter-spacing:.12em;
+    width:34px; flex-shrink:0;
+  }
+  .fc-step h2{font-size:18px; font-weight:800; margin:0; letter-spacing:0}
+  .fc-step .lede{color:var(--muted); font-size:15px; line-height:1.55; margin:10px 0 0 50px}
+  .fc-step .aside{color:#6f6d7e; font-size:13.5px; line-height:1.5; margin:8px 0 2px 50px; padding-left:12px}
+
+  .phone-col{position:sticky; top:86px; display:flex; justify-content:center}
+  .phone{
+    width:280px; height:560px; border-radius:40px; padding:8px; position:relative;
+    background:#17171F; border:1px solid #262634;
+    box-shadow:0 30px 80px rgba(0,0,0,.6), inset 0 0 0 8px #14141c;
+  }
+  .phone .notch{position:absolute; top:18px; left:50%; transform:translateX(-50%); width:90px; height:22px; background:#14141c; border-radius:12px; z-index:5}
+  #fc-screen{
+    position:relative; width:100%; height:100%; border-radius:34px; overflow:hidden; background:#10182B;
+  }
+  .fc-scene{display:none; position:absolute; inset:0; z-index:2}
+  .fc-scene.on{display:block}
+  .fc-scene.opaque{background:#0D0D14}
+  .scene-pill{
+    position:absolute; left:50%; bottom:70px; transform:translateX(-50%);
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:9px; letter-spacing:.16em;
+    padding:8px 15px; border-radius:999px; white-space:nowrap; z-index:3;
+  }
+  .qmark{font-family:"Unbounded",sans-serif; font-weight:700; color:rgba(255,255,255,.85)}
+
+  /* in-phone game chrome — mirrors the real FilmCatch map */
+  .fc-map{position:absolute; inset:0; z-index:1; overflow:hidden}
+  .fc-map::after{
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(148,170,214,.09) 1.5px, transparent 1.5px),
+      linear-gradient(90deg, rgba(148,170,214,.09) 1.5px, transparent 1.5px);
+    background-size:72px 72px;
+  }
+  .fc-map .lm{position:absolute; font-family:"Unbounded",sans-serif; font-weight:500; font-size:6.5px; letter-spacing:.07em; color:#E8B84B; text-shadow:0 1px 3px rgba(0,0,0,.85); z-index:1}
+  .fc-hud{position:absolute; top:48px; left:10px; right:10px; display:flex; justify-content:space-between; gap:5px; z-index:6; pointer-events:none}
+  .hud-pill{
+    display:inline-flex; align-items:center; gap:3px;
+    background:rgba(9,13,24,.85); border:1px solid rgba(255,255,255,.1); border-radius:999px;
+    padding:4px 8px; font-family:"Unbounded",sans-serif; font-weight:700; font-size:7px; color:#fff;
+  }
+  .fc-tabbar{
+    position:absolute; left:0; right:0; bottom:0; height:44px; z-index:6;
+    background:rgba(8,10,17,.96); border-top:1px solid rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:space-around;
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:6.5px; letter-spacing:.06em;
+    color:#5A5F72; border-radius:0 0 34px 34px;
+  }
+  .fc-tabbar .tab{position:relative; text-align:center}
+  .fc-tabbar .tab.act{color:#60a5fa}
+  .fc-tabbar .tab .b9{
+    position:absolute; top:-8px; right:-12px; background:#EF4444; color:#fff;
+    font-size:5.5px; padding:1px 3.5px; border-radius:6px;
+  }
+  .pin{
+    position:absolute; width:34px; height:34px; border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, #1c2436, #0d1220);
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+    box-shadow:0 2px 8px rgba(0,0,0,.55);
+  }
+  .reach{position:absolute; border-radius:50%; border:1.5px solid rgba(96,165,250,.45); background:rgba(59,130,246,.05)}
+  .scan-btn{
+    position:absolute; left:50%; bottom:96px; transform:translateX(-50%);
+    background:#3B82F6; color:#fff; font-family:"Unbounded",sans-serif; font-weight:700;
+    font-size:10px; letter-spacing:.16em; padding:10px 28px; border-radius:999px;
+    box-shadow:0 4px 18px rgba(59,130,246,.5); z-index:3;
+  }
+  .scan-cap{
+    position:absolute; left:50%; bottom:74px; transform:translateX(-50%);
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:6.5px; letter-spacing:.05em;
+    color:#8b93a8; white-space:nowrap; z-index:3;
+  }
+  .chip{
+    display:inline-flex; align-items:center; gap:3px;
+    font-family:"Unbounded",sans-serif; font-weight:700; font-size:6px; letter-spacing:.06em;
+    padding:3.5px 7px; border-radius:999px;
+    background:rgba(12,12,22,.85); border:1px solid rgba(255,255,255,.16); color:#cfd3e0;
+  }
+  .pull-txt{
+    position:absolute; left:50%; top:65.5%; transform:translateX(-50%);
+    font-family:"Unbounded",sans-serif; font-weight:700; font-size:12px; color:#C084FC; z-index:3;
+  }
+  .collect-btn{
+    position:absolute; left:50%; bottom:72px; transform:translateX(-50%);
+    background:#A855F7; color:#fff; font-family:"Unbounded",sans-serif; font-weight:700;
+    font-size:10px; letter-spacing:.14em; padding:10px 30px; border-radius:12px;
+    box-shadow:0 4px 18px rgba(168,85,247,.5); z-index:3;
+  }
+  .lst{display:flex; align-items:center; gap:9px; background:#141420; border:1px solid rgba(255,255,255,.09); border-radius:10px; padding:8px 10px}
+  .lst .thumb{width:27px; height:38px; border-radius:5px; flex:none}
+  .lst .lst-mid{flex:1; min-width:0}
+  .lst b{display:block; font-size:10.5px; font-weight:800; color:#EDEBF4; line-height:1.25}
+  .lst i{display:block; font-style:normal; font-family:"Unbounded",sans-serif; font-weight:500; font-size:5.5px; letter-spacing:.1em; margin-top:2px}
+  .lst .price{font-weight:800; font-size:10px; color:#E8B84B; white-space:nowrap; text-align:right}
+  .lst .buy{display:block; margin-top:3px; font-family:"Unbounded",sans-serif; font-weight:700; font-size:5.5px; letter-spacing:.08em; background:#E8B84B; color:#0A0A10; border-radius:5px; padding:2.5px 6px; text-align:center}
+
+  @keyframes fc-pulse{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.35);opacity:0}}
+  @keyframes fc-inrange{0%,54%{box-shadow:0 0 10px rgba(245,158,11,.35); transform:scale(1)}64%,100%{box-shadow:0 0 24px rgba(245,158,11,.95); transform:scale(1.18)}}
+  @keyframes fc-shine{0%{left:-60%}55%{left:130%}100%{left:130%}}
+  @keyframes fc-pop{0%{transform:scale(0);opacity:0}70%{transform:scale(1.25);opacity:1}100%{transform:scale(1);opacity:1}}
+  @keyframes fc-radar{0%{transform:scale(.1);opacity:.8}100%{transform:scale(2.6);opacity:0}}
+  @keyframes fc-prog{from{width:0}to{width:100%}}
+  @keyframes fc-walker{0%{transform:translate(0,0)}10%{transform:translate(0,0)}60%{transform:translate(118px,-210px)}100%{transform:translate(118px,-210px)}}
+  @keyframes fc-burst{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+  @keyframes fc-reveal{0%{transform:rotateY(90deg) scale(.7);opacity:0}45%{transform:rotateY(90deg) scale(.7);opacity:0}75%{transform:rotateY(-12deg) scale(1.06);opacity:1}100%{transform:rotateY(0) scale(1);opacity:1}}
+  @keyframes fc-rise{0%{transform:translateY(14px);opacity:0}100%{transform:translateY(0);opacity:1}}
+  @keyframes fc-rise-c{0%{transform:translate(-50%,14px);opacity:0}100%{transform:translate(-50%,0);opacity:1}}
+  @keyframes fc-swapl{0%,25%{transform:translateX(0)}60%,100%{transform:translateX(118px)}}
+  @keyframes fc-swapr{0%,25%{transform:translateX(0)}60%,100%{transform:translateX(-118px)}}
+  @media(prefers-reduced-motion:reduce){.fc-step.on .fc-bar{animation:none}}
+
+  /* ── rarity odds ────────────────────────────────── */
+  .odds{display:flex; flex-direction:column; gap:10px}
+  .fc-odds{display:grid; grid-template-columns:160px 1fr 210px; gap:20px; align-items:center}
+  .fc-odds .tier{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:11px; letter-spacing:.14em;
+  }
+  .fc-odds .tier i{width:9px; height:9px; border-radius:5px}
+  .fc-odds .bar{height:10px; border-radius:5px; background:var(--surface); overflow:hidden}
+  .fc-odds .bar div{height:100%; border-radius:5px}
+  .fc-odds .note{color:var(--muted); font-size:14.5px; text-align:right}
+  @media(max-width:640px){
+    .fc-odds{grid-template-columns:110px 1fr; gap:8px 14px}
+    .fc-odds .note{grid-column:1/-1; text-align:left; font-size:13px; margin-top:-4px; color:#6f6d7e}
+  }
+  .special{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:26px}
+  @media(max-width:700px){.special{grid-template-columns:1fr}}
+  .special .card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px}
+  .special .card.gold{border-color:rgba(245,158,11,.45)}
+  .special .card.holo{
+    background:linear-gradient(var(--surface),var(--surface)) padding-box,
+      linear-gradient(120deg,#ff4dd2,#4dd2ff,#a855f7) border-box;
+    border:1px solid transparent;
+  }
+  .special h3{font-size:18px; font-weight:800; display:flex; align-items:center; gap:9px; margin-bottom:8px}
+  .special h3 img{width:22px;height:22px}
+  .special p{color:var(--muted); font-size:15px}
+
+  /* ── progression pills ──────────────────────────── */
+  .lvls{display:flex; gap:10px; flex-wrap:wrap}
+  .lvl{
+    display:inline-flex; align-items:center; gap:9px; padding:10px 16px; border-radius:999px;
+    border:1px solid var(--line); background:var(--surface); font-size:14.5px; color:#d5d3df;
+  }
+  .lvl b{font-family:"Unbounded",sans-serif; font-weight:700; font-size:10px; letter-spacing:.06em; color:var(--gold)}
+  .lvl.max{border-color:rgba(245,158,11,.5); background:rgba(245,158,11,.09); font-weight:800}
+  .lvl.max span{
+    background:linear-gradient(100deg,#F6D989,var(--legendary),#8a5a00);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+
+  /* ── daily loop cards ───────────────────────────── */
+  .disc-cols{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  @media(max-width:820px){.disc-cols{grid-template-columns:1fr}}
+  .disc{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:24px}
+  .disc img{width:34px;height:34px;margin-bottom:14px}
+  .disc h3{font-size:18px; font-weight:800; margin-bottom:6px}
+  .disc p{color:var(--muted); font-size:14.5px; line-height:1.55}
+
+  /* ── finale + footer ────────────────────────────── */
+  .finale{padding:100px 0 84px; text-align:center}
+  .finale h2{
+    font-family:"Unbounded",sans-serif; font-weight:700;
+    font-size:clamp(22px,4vw,40px); letter-spacing:.02em; line-height:1.2; margin:0;
+  }
+  .finale h2 em{font-style:normal; color:var(--gold)}
+  .finale p{color:var(--muted); margin:16px 0 34px}
+  .bulbs{display:flex; justify-content:center; gap:14px; margin-bottom:30px}
+  .bulbs i{width:7px;height:7px;border-radius:50%; background:var(--gold); box-shadow:0 0 10px rgba(232,184,75,.8); opacity:.9}
+  .bulbs i:nth-child(even){opacity:.35; box-shadow:none}
+  footer{border-top:1px solid var(--line); padding:30px 0 40px; color:var(--muted); font-size:13.5px}
+  footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap}
+  footer a:hover{color:var(--text)}
+  footer .legal{display:flex; gap:20px; flex-wrap:wrap}
 </style>
+</head>
+<body>
 
-<div style="background:#0D0D0F; overflow-x:clip; min-height:100vh;">
-
-<!-- nav -->
-<div class="fc-nav" style="border-bottom:1px solid #14141c;">
-  <div class="inner" style="display:flex; align-items:center; justify-content:space-between; padding:22px 40px;">
-    <a href="index.html" style="display:flex; align-items:center; gap:10px; color:#fff;">
-      <img src="assets/splash-icon.png" style="width:30px; height:30px;" />
-      <span style="font-family:'Space Grotesk'; font-weight:700; font-size:20px;">Film<span style="color:#3B82F6;">Catch</span></span>
-    </a>
-    <div class="m-wrap" style="display:flex; align-items:center; gap:30px; font-size:15px;">
-      <a href="how-it-works.html" style="color:#fff; font-weight:700;">How it works</a>
-      <a href="index.html#rarities" style="color:#9CA3AF;">Rarities</a>
-      <a href="index.html#trading" style="color:#9CA3AF;">Trading</a>
-      <a href="support.html" style="color:#9CA3AF;">Support</a>
-      <a href="index.html#download" style="background:#3B82F6; color:#fff; padding:9px 18px; border-radius:10px; font-weight:700; font-family:'Space Grotesk';">Get the app</a>
-    </div>
+<nav>
+  <a class="brand" href="index.html"><img src="assets/app-icon.png" alt=""><span>FILM<b>CATCH</b></span></a>
+  <div class="nav-links">
+    <a href="how-it-works.html" style="color:var(--text)">How it works</a>
+    <a href="index.html#rarities">Rarities</a>
+    <a href="index.html#trading">Trading</a>
+    <a href="support.html">Support</a>
+    <a class="nav-cta" href="index.html#get">Get the app</a>
   </div>
-</div>
+</nav>
 
-<!-- animated walkthrough -->
-<div class="m-grid inner" style="padding:36px 40px 48px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:48px; align-items:start;">
-  <div style="display:flex; flex-direction:column; gap:12px;" id="fc-steps">
-    <div style="position:relative; padding:0 0 10px;">
-      <div style="position:absolute; top:-40px; left:-60px; width:500px; height:320px; background:radial-gradient(circle, rgba(59,130,246,.14), transparent 65%); pointer-events:none;"></div>
-      <span style="position:relative; display:inline-flex; font-size:13px; letter-spacing:2px; color:#60a5fa; text-transform:uppercase; font-family:'Space Grotesk';">How it works</span>
-      <h1 style="position:relative; font-size:clamp(19px, 3.1vw, 34px); letter-spacing:-1px; margin:10px 0 10px; max-width:none; white-space:nowrap; line-height:1.05;">The Loop: five steps, start to finish.</h1>
-    </div>
-    <div class="fc-step on" data-step="0">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span style="font-family:'Space Grotesk'; font-weight:700; font-size:15px; color:#60a5fa; width:28px;">01</span>
-        <h2 style="font-size:18px; letter-spacing:-.3px;">Scan your area</h2>
-      </div>
-      <div class="fc-step-body"><div>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:10px 0 0 44px;">Open the map and scan to reveal films hidden near your real location. Spawns fill the blocks around you — pan and scan new areas to reveal even more.</p>
-        <p style="color:#6b7280; font-size:13px; line-height:1.5; margin:8px 0 2px 44px; border-left:2px solid #60a5fa; padding-left:12px;">Spawns rotate through the day, so the same corner can surprise you tomorrow.</p>
-      </div></div>
-      <span class="fc-bar" style="background:#60a5fa;"></span>
-    </div>
-    <div class="fc-step" data-step="1">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span style="font-family:'Space Grotesk'; font-weight:700; font-size:15px; color:#4ade80; width:28px;">02</span>
-        <h2 style="font-size:18px; letter-spacing:-.3px;">Walk into range</h2>
-      </div>
-      <div class="fc-step-body"><div>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:10px 0 0 44px;">Films are catchable once you’re within 200 metres. The reach ring around you shows exactly what’s in range — everything else is a reason to keep walking.</p>
-        <p style="color:#6b7280; font-size:13px; line-height:1.5; margin:8px 0 2px 44px; border-left:2px solid #4ade80; padding-left:12px;">Stay aware of your surroundings — never catch and drive.</p>
-      </div></div>
-      <span class="fc-bar" style="background:#4ade80;"></span>
-    </div>
-    <div class="fc-step" data-step="2">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span style="font-family:'Space Grotesk'; font-weight:700; font-size:15px; color:#fbbf24; width:28px;">03</span>
-        <h2 style="font-size:18px; letter-spacing:-.3px;">Make the catch</h2>
-      </div>
-      <div class="fc-step-body"><div>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:10px 0 0 44px;">Tap a spawn to see the film, then catch it. Rarity, genre badges, and full film details land straight in your collection.</p>
-        <p style="color:#6b7280; font-size:13px; line-height:1.5; margin:8px 0 2px 44px; border-left:2px solid #fbbf24; padding-left:12px;">Any catch can roll a holographic Shiny with animated foil.</p>
-      </div></div>
-      <span class="fc-bar" style="background:#fbbf24;"></span>
-    </div>
-    <div class="fc-step" data-step="3">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span style="font-family:'Space Grotesk'; font-weight:700; font-size:15px; color:#a78bfa; width:28px;">04</span>
-        <h2 style="font-size:18px; letter-spacing:-.3px;">Build your collection</h2>
-      </div>
-      <div class="fc-step-body"><div>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:10px 0 0 44px;">Browse your catches in a grid, filter by rarity, and complete themed Sets. Duplicates aren’t clutter — fuse three copies into a higher tier, or flip them on the market.</p>
-        <p style="color:#6b7280; font-size:13px; line-height:1.5; margin:8px 0 2px 44px; border-left:2px solid #a78bfa; padding-left:12px;">Completing a Set earns rewards and permanent bragging rights.</p>
-      </div></div>
-      <span class="fc-bar" style="background:#a78bfa;"></span>
-    </div>
-    <div class="fc-step" data-step="4">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span style="font-family:'Space Grotesk'; font-weight:700; font-size:15px; color:#f472b6; width:28px;">05</span>
-        <h2 style="font-size:18px; letter-spacing:-.3px;">Trade with collectors</h2>
-      </div>
-      <div class="fc-step-body"><div>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:10px 0 0 44px;">List any film and set your Ticket price, or run a live auction with a Buy Now option. Gift films, Tickets, and Gems to friends to grow your crew.</p>
-        <p style="color:#6b7280; font-size:13px; line-height:1.5; margin:8px 0 2px 44px; border-left:2px solid #f472b6; padding-left:12px;">Trades are protected — cheaters get reversed and suspended.</p>
-      </div></div>
-      <span class="fc-bar" style="background:#f472b6;"></span>
-    </div>
-  </div>
+<!-- the loop -->
+<div class="wrap">
+  <div class="loop">
+    <div id="fc-steps">
+      <div class="marquee-label">How it works</div>
+      <h1>The loop: five steps, start to finish.</h1>
 
-  <!-- phone -->
-  <div style="position:sticky; top:80px; display:flex; justify-content:center;">
-    <div style="width:280px; height:560px; border-radius:40px; border:1px solid #2E2E42; background:#0a0a10; box-shadow:0 30px 80px rgba(0,0,0,.6), inset 0 0 0 8px #14141c; padding:8px; position:relative;">
-      <div style="position:absolute; top:18px; left:50%; transform:translateX(-50%); width:90px; height:22px; background:#14141c; border-radius:12px; z-index:5;"></div>
-      <div id="fc-screen" style="position:relative; width:100%; height:100%; border-radius:34px; overflow:hidden; background:#0D0D14; background-image:linear-gradient(rgba(59,130,246,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,.06) 1px, transparent 1px); background-size:34px 34px;">
+      <div class="fc-step on" data-step="0">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="no" style="color:#60a5fa;">01</span>
+          <h2>Scan your area</h2>
+        </div>
+        <div class="fc-step-body"><div>
+          <p class="lede">Open the map and scan to reveal films hidden near your real location. Spawns fill the blocks around you — pan and scan new areas to reveal even more.</p>
+          <p class="aside" style="border-left:2px solid #60a5fa;">Spawns rotate through the day, so the same corner can surprise you tomorrow.</p>
+        </div></div>
+        <span class="fc-bar" style="background:#60a5fa;"></span>
+      </div>
 
-        <!-- scene 1: scan -->
-        <div class="fc-scene on">
-          <div style="position:absolute; left:50%; top:52%; width:60px; height:60px; margin:-30px 0 0 -30px;">
-            <span style="position:absolute; inset:0; border-radius:50%; border:2px solid rgba(96,165,250,.8); animation:fc-radar 2.2s ease-out infinite;"></span>
-            <span style="position:absolute; inset:0; border-radius:50%; border:2px solid rgba(96,165,250,.5); animation:fc-radar 2.2s ease-out .7s infinite;"></span>
-            <span style="position:absolute; left:50%; top:50%; width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%; background:#3B82F6; box-shadow:0 0 14px rgba(59,130,246,.9);"></span>
+      <div class="fc-step" data-step="1">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="no" style="color:#4ade80;">02</span>
+          <h2>Walk into range</h2>
+        </div>
+        <div class="fc-step-body"><div>
+          <p class="lede">Films are catchable once you’re within 200 metres. The reach ring around you shows exactly what’s in range — everything else is a reason to keep walking.</p>
+          <p class="aside" style="border-left:2px solid #4ade80;">Stay aware of your surroundings — never catch and drive.</p>
+        </div></div>
+        <span class="fc-bar" style="background:#4ade80;"></span>
+      </div>
+
+      <div class="fc-step" data-step="2">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="no" style="color:#fbbf24;">03</span>
+          <h2>Make the catch</h2>
+        </div>
+        <div class="fc-step-body"><div>
+          <p class="lede">Tap a spawn to see the film, then catch it. Rarity, genre badges, and full film details land straight in your collection.</p>
+          <p class="aside" style="border-left:2px solid #fbbf24;">Any catch can roll a holographic Shiny with animated foil.</p>
+        </div></div>
+        <span class="fc-bar" style="background:#fbbf24;"></span>
+      </div>
+
+      <div class="fc-step" data-step="3">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="no" style="color:#a78bfa;">04</span>
+          <h2>Build your collection</h2>
+        </div>
+        <div class="fc-step-body"><div>
+          <p class="lede">Browse your catches in a grid, filter by rarity, and complete themed Sets. Duplicates aren’t clutter — fuse three copies into a higher tier, or flip them on the market.</p>
+          <p class="aside" style="border-left:2px solid #a78bfa;">Completing a Set earns rewards and permanent bragging rights.</p>
+        </div></div>
+        <span class="fc-bar" style="background:#a78bfa;"></span>
+      </div>
+
+      <div class="fc-step" data-step="4">
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span class="no" style="color:#f472b6;">05</span>
+          <h2>Trade with collectors</h2>
+        </div>
+        <div class="fc-step-body"><div>
+          <p class="lede">List any film and set your Ticket price, or run a live auction with a Buy Now option. Gift films, Tickets, and Gems to friends to grow your crew.</p>
+          <p class="aside" style="border-left:2px solid #f472b6;">Trades are protected — cheaters get reversed and suspended.</p>
+        </div></div>
+        <span class="fc-bar" style="background:#f472b6;"></span>
+      </div>
+    </div>
+
+    <!-- phone -->
+    <div class="phone-col">
+      <div class="phone">
+        <div class="notch"></div>
+        <div id="fc-screen">
+
+          <!-- persistent map, HUD, tab bar — the real game chrome -->
+          <div class="fc-map" aria-hidden="true">
+            <span class="lm" style="left:58%; top:30%;">&#9673; PIER 22</span>
+            <span class="lm" style="left:12%; top:73%;">&#9673; RIVERWALK PARK</span>
           </div>
-          <span style="position:absolute; left:20%; top:24%; width:26px; height:34px; border-radius:5px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #3B82F6; animation:fc-pop .5s ease-out .6s both;"></span>
-          <span style="position:absolute; left:68%; top:18%; width:26px; height:34px; border-radius:5px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid rgba(255,255,255,.25); animation:fc-pop .5s ease-out 1s both;"></span>
-          <span style="position:absolute; left:74%; top:46%; width:26px; height:34px; border-radius:5px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #A855F7; animation:fc-pop .5s ease-out 1.4s both;"></span>
-          <span style="position:absolute; left:14%; top:64%; width:26px; height:34px; border-radius:5px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #22C55E; animation:fc-pop .5s ease-out 1.8s both;"></span>
-          <span style="position:absolute; left:58%; top:76%; width:26px; height:34px; border-radius:5px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #F59E0B; box-shadow:0 0 12px rgba(245,158,11,.5); animation:fc-pop .5s ease-out 2.2s both;"></span>
-          <span style="position:absolute; left:50%; bottom:26px; transform:translateX(-50%); font-family:'Space Grotesk'; font-weight:700; font-size:12px; letter-spacing:2px; color:#60a5fa; background:rgba(59,130,246,.12); border:1px solid rgba(59,130,246,.4); padding:8px 16px; border-radius:999px; animation:fc-rise .5s ease-out .3s both;">SCANNING…</span>
-        </div>
-
-        <!-- scene 2: walk -->
-        <div class="fc-scene">
-          <span style="position:absolute; left:64%; top:20%; width:30px; height:40px; border-radius:6px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #F59E0B; box-shadow:0 0 14px rgba(245,158,11,.5);"></span>
-          <svg style="position:absolute; inset:0; width:100%; height:100%;" viewBox="0 0 264 544" fill="none"><path d="M 80 440 C 100 380, 150 340, 198 230" stroke="rgba(74,222,128,.5)" stroke-width="3" stroke-dasharray="6 8" stroke-linecap="round"/></svg>
-          <div style="position:absolute; left:80px; top:440px; width:0; height:0; animation:fc-walker 5s ease-in-out infinite;">
-            <span style="position:absolute; left:-34px; top:-34px; width:68px; height:68px; border-radius:50%; border:2px solid rgba(74,222,128,.5); background:rgba(74,222,128,.08); animation:fc-pulse 2s ease-in-out infinite;"></span>
-            <span style="position:absolute; left:-7px; top:-7px; width:14px; height:14px; border-radius:50%; background:#4ade80; box-shadow:0 0 14px rgba(74,222,128,.9);"></span>
+          <div class="fc-hud" aria-hidden="true">
+            <span class="hud-pill">80 LV</span>
+            <span class="hud-pill">&#128293; 7</span>
+            <span class="hud-pill" style="color:#60a5fa;">&#128142; 100</span>
+            <span class="hud-pill" style="color:#E8B84B;">&#127903;&#65039; 400K</span>
           </div>
-          <span style="position:absolute; left:50%; bottom:26px; transform:translateX(-50%); font-family:'Space Grotesk'; font-weight:700; font-size:12px; letter-spacing:2px; color:#4ade80; background:rgba(74,222,128,.12); border:1px solid rgba(74,222,128,.4); padding:8px 16px; border-radius:999px;">180 M AWAY</span>
-        </div>
-
-        <!-- scene 3: catch -->
-        <div class="fc-scene">
-          <span style="position:absolute; left:50%; top:44%; width:220px; height:220px; margin:-110px 0 0 -110px; border-radius:50%; border:3px solid rgba(251,191,36,.7); animation:fc-burst 1s ease-out 1.7s both;"></span>
-          <div style="position:absolute; left:50%; top:44%; width:150px; height:210px; margin:-105px 0 0 -75px; border-radius:12px; background:radial-gradient(circle at 30% 18%, rgba(255,255,255,.08), transparent 50%), linear-gradient(160deg,#16161c,#060608); border:2px solid #F59E0B; box-shadow:0 0 30px rgba(245,158,11,.4); overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; animation:fc-reveal 2.2s ease-out both;">
-            <span style="position:absolute; top:10px; left:10px; font-size:9px; font-weight:800; letter-spacing:1px; color:#F59E0B; background:rgba(0,0,0,.4); border:1px solid #F59E0B; padding:2px 6px; border-radius:4px;">LEGENDARY</span>
-            <span style="font-family:'Space Grotesk'; font-weight:700; font-size:52px; color:rgba(255,255,255,.85);">?</span>
-            <span style="position:absolute; top:-20%; bottom:-20%; left:-60%; width:55%; background:linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent); transform:skewX(-18deg); animation:fc-shine 2.6s ease-in-out 2s infinite;"></span>
+          <div class="fc-tabbar" aria-hidden="true">
+            <span class="tab act">EXPLORE</span>
+            <span class="tab">TRADE</span>
+            <span class="tab">INBOX<span class="b9">9+</span></span>
+            <span class="tab">PROFILE</span>
           </div>
-          <span style="position:absolute; left:50%; bottom:26px; transform:translateX(-50%); font-family:'Space Grotesk'; font-weight:700; font-size:12px; letter-spacing:2px; color:#fbbf24; background:rgba(251,191,36,.12); border:1px solid rgba(251,191,36,.4); padding:8px 16px; border-radius:999px; animation:fc-rise .5s ease-out 1.9s both;">CAUGHT!</span>
-        </div>
 
-        <!-- scene 4: collect -->
-        <div class="fc-scene">
-          <div style="position:absolute; inset:44px 22px 70px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; align-content:start;">
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid rgba(255,255,255,.2); animation:fc-pop .4s ease-out .2s both;"></span>
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #22C55E; animation:fc-pop .4s ease-out .45s both;"></span>
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #3B82F6; animation:fc-pop .4s ease-out .7s both;"></span>
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid rgba(255,255,255,.2); animation:fc-pop .4s ease-out .95s both;"></span>
-            <span style="position:relative; aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #A855F7; box-shadow:0 0 14px rgba(168,85,247,.5); overflow:hidden; animation:fc-pop .4s ease-out 1.2s both;"><span style="position:absolute; top:-20%; bottom:-20%; left:-60%; width:55%; background:linear-gradient(100deg, transparent, rgba(255,255,255,.4), transparent); transform:skewX(-18deg); animation:fc-shine 2.6s ease-in-out 1.6s infinite;"></span></span>
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #3B82F6; animation:fc-pop .4s ease-out 1.45s both;"></span>
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #22C55E; animation:fc-pop .4s ease-out 1.7s both;"></span>
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #F59E0B; box-shadow:0 0 12px rgba(245,158,11,.45); animation:fc-pop .4s ease-out 1.95s both;"></span>
-            <span style="aspect-ratio:5/7; border-radius:8px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid rgba(255,255,255,.2); animation:fc-pop .4s ease-out 2.2s both;"></span>
+          <!-- scene 1: scan -->
+          <div class="fc-scene on">
+            <span class="reach" style="left:50%; top:52%; width:150px; height:150px; margin:-75px 0 0 -75px;"></span>
+            <div style="position:absolute; left:50%; top:52%; width:60px; height:60px; margin:-30px 0 0 -30px;">
+              <span style="position:absolute; inset:0; border-radius:50%; border:2px solid rgba(96,165,250,.8); animation:fc-radar 2.2s ease-out infinite;"></span>
+              <span style="position:absolute; inset:0; border-radius:50%; border:2px solid rgba(96,165,250,.5); animation:fc-radar 2.2s ease-out .7s infinite;"></span>
+              <span style="position:absolute; left:50%; top:50%; width:13px; height:13px; margin:-6.5px 0 0 -6.5px; border-radius:50%; background:#3B82F6; border:2px solid #EAF2FF; box-shadow:0 0 12px rgba(59,130,246,.9);"></span>
+            </div>
+            <span class="pin" style="left:16%; top:22%; border:2.5px solid #3B82F6; animation:fc-pop .5s ease-out .6s both;">&#127917;</span>
+            <span class="pin" style="left:66%; top:16%; border:2.5px solid #9CA3AF; animation:fc-pop .5s ease-out 1s both;">&#128123;</span>
+            <span class="pin" style="left:74%; top:44%; border:2.5px solid #A855F7; animation:fc-pop .5s ease-out 1.4s both;">&#128165;</span>
+            <span class="pin" style="left:12%; top:60%; border:2.5px solid #22C55E; animation:fc-pop .5s ease-out 1.8s both;">&#10084;&#65039;</span>
+            <span class="pin" style="left:56%; top:70%; border:2.5px solid #F59E0B; box-shadow:0 0 14px rgba(245,158,11,.6); animation:fc-pop .5s ease-out 2.2s both;">&#127916;</span>
+            <span class="scan-btn" style="animation:fc-rise-c .5s ease-out .2s both;">SCAN</span>
+            <span class="scan-cap" style="animation:fc-rise-c .5s ease-out .4s both;">5 drops in reach &middot; pan &amp; scan for more</span>
           </div>
-          <span style="position:absolute; left:50%; bottom:26px; transform:translateX(-50%); font-family:'Space Grotesk'; font-weight:700; font-size:12px; letter-spacing:2px; color:#a78bfa; background:rgba(167,139,250,.12); border:1px solid rgba(167,139,250,.4); padding:8px 16px; border-radius:999px; animation:fc-rise .5s ease-out 2.4s both;">SET: 9 / 12</span>
-        </div>
 
-        <!-- scene 5: trade -->
-        <div class="fc-scene">
-          <div style="position:absolute; left:24px; top:34%; width:100px; height:140px; border-radius:10px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #3B82F6; display:flex; align-items:center; justify-content:center; animation:fc-swapl 4s ease-in-out infinite; z-index:2;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:34px; color:rgba(255,255,255,.85);">?</span></div>
-          <div style="position:absolute; right:24px; top:34%; width:100px; height:140px; border-radius:10px; background:linear-gradient(160deg,#16161c,#060608); border:2px solid #A855F7; display:flex; align-items:center; justify-content:center; animation:fc-swapr 4s ease-in-out infinite;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:34px; color:rgba(255,255,255,.85);">?</span></div>
-          <span style="position:absolute; left:50%; top:24%; transform:translateX(-50%); font-family:'Space Grotesk'; font-weight:700; font-size:13px; letter-spacing:2px; color:#f472b6;">TRADE OFFER</span>
-          <span style="position:absolute; left:50%; top:66%; transform:translateX(-50%); font-size:20px; color:#f472b6;">⇄</span>
-          <span style="position:absolute; left:50%; bottom:26px; transform:translateX(-50%); font-family:'Space Grotesk'; font-weight:700; font-size:12px; letter-spacing:2px; color:#f472b6; background:rgba(244,114,182,.12); border:1px solid rgba(244,114,182,.4); padding:8px 16px; border-radius:999px;">🎟️ 240 TICKETS</span>
-        </div>
+          <!-- scene 2: walk -->
+          <div class="fc-scene">
+            <span class="pin" style="left:68.5%; top:36.5%; border:2.5px solid #F59E0B; animation:fc-inrange 5s ease-in-out infinite;">&#127916;</span>
+            <svg style="position:absolute; inset:0; width:100%; height:100%;" viewBox="0 0 264 544" fill="none"><path d="M 80 440 C 100 380, 150 340, 198 230" stroke="rgba(96,165,250,.5)" stroke-width="3" stroke-dasharray="6 8" stroke-linecap="round"/></svg>
+            <div style="position:absolute; left:80px; top:440px; width:0; height:0; animation:fc-walker 5s ease-in-out infinite;">
+              <span style="position:absolute; left:-34px; top:-34px; width:68px; height:68px; border-radius:50%; border:1.5px solid rgba(96,165,250,.5); background:rgba(59,130,246,.07); animation:fc-pulse 2s ease-in-out infinite;"></span>
+              <span style="position:absolute; left:-7px; top:-7px; width:14px; height:14px; border-radius:50%; background:#3B82F6; border:2px solid #EAF2FF; box-shadow:0 0 14px rgba(59,130,246,.9);"></span>
+            </div>
+            <span class="scene-pill" style="color:#60a5fa; background:rgba(59,130,246,.14); border:1px solid rgba(59,130,246,.45);">180 M AWAY</span>
+          </div>
 
+          <!-- scene 3: catch — the reveal over the dimmed map -->
+          <div class="fc-scene">
+            <div style="position:absolute; inset:0; background:rgba(7,7,15,.88);"></div>
+            <div style="position:absolute; left:50%; top:42%; width:210px; height:210px; margin:-105px 0 0 -105px; border-radius:50%; background:radial-gradient(circle, rgba(168,85,247,.30), rgba(168,85,247,.10) 55%, transparent 72%);"></div>
+            <span style="position:absolute; left:50%; top:42%; width:220px; height:220px; margin:-110px 0 0 -110px; border-radius:50%; border:3px solid rgba(168,85,247,.7); animation:fc-burst 1s ease-out 1.7s both;"></span>
+            <div style="position:absolute; left:50%; top:42%; width:132px; height:186px; margin:-93px 0 0 -66px; border-radius:12px; background:url(assets/posters/notld.jpg) center/cover; border:2px solid #A855F7; box-shadow:0 0 30px rgba(168,85,247,.45); overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; animation:fc-reveal 2.2s ease-out both;">
+              <span style="position:absolute; top:8px; left:8px; font-family:'Unbounded',sans-serif; font-size:6px; font-weight:700; letter-spacing:.08em; color:#C084FC; background:rgba(0,0,0,.45); border:1px solid #A855F7; padding:2.5px 6px; border-radius:5px;">EPIC</span>
+              <span style="position:absolute; top:8px; left:50px; font-family:'Unbounded',sans-serif; font-size:6px; font-weight:700; letter-spacing:.08em; color:#0A0A10; background:linear-gradient(90deg,#ff4dd2,#4dd2ff,#a855f7); padding:2.5px 6px; border-radius:5px; border:1px solid transparent;">HOLO</span>
+              <span style="position:absolute; top:-20%; bottom:-20%; left:-60%; width:55%; background:linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent); transform:skewX(-18deg); animation:fc-shine 2.6s ease-in-out 2s infinite;"></span>
+            </div>
+            <div style="position:absolute; left:50%; top:60.5%; transform:translateX(-50%); display:flex; gap:5px; z-index:3; animation:fc-rise-c .5s ease-out 1.9s both;">
+              <span class="chip" style="color:#C084FC; border-color:rgba(168,85,247,.55);">&#9679; EPIC</span>
+              <span class="chip">&#128123; HORROR</span>
+              <span class="chip">&#8987; 12M</span>
+            </div>
+            <span class="pull-txt" style="animation:fc-rise-c .5s ease-out 2.1s both;">Epic pull!</span>
+            <span class="collect-btn" style="animation:fc-rise-c .5s ease-out 2.3s both;">COLLECT!</span>
+          </div>
+
+          <!-- scene 4: collection -->
+          <div class="fc-scene opaque">
+            <div style="position:absolute; inset:76px 20px 100px; display:grid; grid-template-columns:repeat(3,1fr); gap:9px; align-content:start;">
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/girl-friday.jpg) center/cover; border:2px solid rgba(255,255,255,.2); animation:fc-pop .4s ease-out .2s both;"></span>
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/general.jpg) center/cover; border:2px solid #22C55E; animation:fc-pop .4s ease-out .45s both;"></span>
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/metropolis.jpg) center/cover; border:2px solid #3B82F6; animation:fc-pop .4s ease-out .7s both;"></span>
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/charade.jpg) center/cover; border:2px solid rgba(255,255,255,.2); animation:fc-pop .4s ease-out .95s both;"></span>
+              <span style="position:relative; aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/carnival.jpg) center/cover; border:2px solid #A855F7; box-shadow:0 0 14px rgba(168,85,247,.5); overflow:hidden; animation:fc-pop .4s ease-out 1.2s both;"><span style="position:absolute; top:-20%; bottom:-20%; left:-60%; width:55%; background:linear-gradient(100deg, transparent, rgba(255,255,255,.4), transparent); transform:skewX(-18deg); animation:fc-shine 2.6s ease-in-out 1.6s infinite;"></span></span>
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/little-shop.jpg) center/cover; border:2px solid #3B82F6; animation:fc-pop .4s ease-out 1.45s both;"></span>
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/haunted-hill.jpg) center/cover; border:2px solid #22C55E; animation:fc-pop .4s ease-out 1.7s both;"></span>
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/nosferatu.jpg) center/cover; border:2px solid #F59E0B; box-shadow:0 0 12px rgba(245,158,11,.45); animation:fc-pop .4s ease-out 1.95s both;"></span>
+              <span style="aspect-ratio:5/7; border-radius:8px; background:url(assets/posters/phantom.jpg) center/cover; border:2px solid rgba(255,255,255,.2); animation:fc-pop .4s ease-out 2.2s both;"></span>
+            </div>
+            <span class="scene-pill" style="color:#a78bfa; background:rgba(167,139,250,.12); border:1px solid rgba(167,139,250,.4); animation:fc-rise-c .5s ease-out 2.4s both;">HORROR SET &middot; 9/12</span>
+          </div>
+
+          <!-- scene 5: trade — marketplace listings -->
+          <div class="fc-scene opaque">
+            <div style="position:absolute; left:16px; right:16px; top:80px; display:flex; flex-direction:column; gap:9px;">
+              <div class="lst" style="animation:fc-rise .45s ease-out .2s both;">
+                <span class="thumb" style="background:url(assets/posters/nosferatu.jpg) center/cover; border:1.5px solid #A855F7;"></span>
+                <div class="lst-mid"><b>Nosferatu</b><i style="color:#C084FC;">EPIC &middot; HORROR</i></div>
+                <div><span class="price">&#127903;&#65039; 240</span><span class="buy">BUY NOW</span></div>
+              </div>
+              <div class="lst" style="animation:fc-rise .45s ease-out .55s both;">
+                <span class="thumb" style="background:url(assets/posters/metropolis.jpg) center/cover; border:1.5px solid #3B82F6;"></span>
+                <div class="lst-mid"><b>Metropolis</b><i style="color:#60a5fa;">RARE &middot; SCI-FI</i></div>
+                <div><span class="price">&#127903;&#65039; 120</span><span class="buy">BUY NOW</span></div>
+              </div>
+              <div class="lst" style="animation:fc-rise .45s ease-out .9s both;">
+                <span class="thumb" style="background:url(assets/posters/general.jpg) center/cover; border:1.5px solid #22C55E;"></span>
+                <div class="lst-mid"><b>The General</b><i style="color:#4ade80;">UNCOMMON &middot; COMEDY</i></div>
+                <div><span class="price">&#127903;&#65039; 45</span><span class="buy">BUY NOW</span></div>
+              </div>
+              <div class="lst" style="animation:fc-rise .45s ease-out 1.25s both;">
+                <span class="thumb" style="background:url(assets/posters/carnival.jpg) center/cover; border:1.5px solid #F59E0B; box-shadow:0 0 10px rgba(245,158,11,.45);"></span>
+                <div class="lst-mid"><b>Carnival of Souls</b><i style="color:#fbbf24;">LEGENDARY &middot; AUCTION &middot; 0:42</i></div>
+                <div><span class="price">&#127903;&#65039; 880</span><span class="buy" style="background:#3B82F6; color:#fff;">BID</span></div>
+              </div>
+            </div>
+            <span class="scene-pill" style="color:#4ade80; background:rgba(74,222,128,.12); border:1px solid rgba(74,222,128,.4); animation:fc-rise-c .5s ease-out 1.8s both;">SOLD! +180 &#127903;&#65039;</span>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -232,11 +501,14 @@
 (function(){
   var steps = Array.prototype.slice.call(document.querySelectorAll('#fc-steps .fc-step'));
   var scenes = Array.prototype.slice.call(document.querySelectorAll('#fc-screen .fc-scene'));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.fc-tabbar .tab'));
+  var tabFor = [0,0,0,3,1];
   var cur = 0, timer = null;
   function go(n){
     cur = n % steps.length;
     steps.forEach(function(s,i){ s.classList.toggle('on', i===cur); });
     scenes.forEach(function(s,i){ s.classList.toggle('on', i===cur); });
+    tabs.forEach(function(t,i){ t.classList.toggle('act', i===tabFor[cur]); });
     clearTimeout(timer);
     timer = setTimeout(function(){ go(cur+1); }, 5000);
   }
@@ -245,144 +517,151 @@
 })();
 </script>
 
+<div class="perf" aria-hidden="true"></div>
+
 <!-- rarity odds -->
-<div style="border-top:1px solid #14141c; background:#08080c;">
-  <div class="inner" style="padding:64px 40px;">
-    <h2 style="font-size:34px; letter-spacing:-1px; margin-bottom:8px;">How rarity works</h2>
-    <p style="color:#9CA3AF; font-size:17px; margin:0 0 32px;">A film’s tier is earned from its real-world prestige — critical acclaim and popularity decide how rare it spawns. And after dark, the horror films come out to play.</p>
-    <div style="display:flex; flex-direction:column; gap:10px;">
-        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr 205px; gap:20px; align-items:center;">
-          <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#9CA3AF;"><span style="width:9px; height:9px; border-radius:5px; background:#9CA3AF;"></span>COMMON</span>
-          <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#9CA3AF; width:55%;"></div></div>
-          <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">You'll see these everywhere</span>
-        </div>
-        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr 205px; gap:20px; align-items:center;">
-          <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#22C55E;"><span style="width:9px; height:9px; border-radius:5px; background:#22C55E;"></span>UNCOMMON</span>
-          <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#22C55E; width:28%;"></div></div>
-          <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">Every few catches</span>
-        </div>
-        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr 205px; gap:20px; align-items:center;">
-          <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#3B82F6;"><span style="width:9px; height:9px; border-radius:5px; background:#3B82F6;"></span>RARE</span>
-          <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#3B82F6; width:13%;"></div></div>
-          <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">More... what's the word? Rare.</span>
-        </div>
-        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr 205px; gap:20px; align-items:center;">
-          <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#A855F7;"><span style="width:9px; height:9px; border-radius:5px; background:#A855F7;"></span>EPIC</span>
-          <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#A855F7; width:6%;"></div></div>
-          <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">Few and far between</span>
-        </div>
-        <div class="fc-odds" style="display:grid; grid-template-columns:160px 1fr 205px; gap:20px; align-items:center;">
-          <span style="display:inline-flex; align-items:center; gap:8px; font-family:'Space Grotesk'; font-weight:700; font-size:14px; letter-spacing:1px; color:#F59E0B;"><span style="width:9px; height:9px; border-radius:5px; background:#F59E0B;"></span>LEGENDARY</span>
-          <div style="height:10px; border-radius:5px; background:#14141c; overflow:hidden;"><div style="height:100%; border-radius:5px; background:#F59E0B; width:4%;"></div></div>
-          <span style="color:#9CA3AF; font-size:14px; text-align:right; font-family:'Space Grotesk'; font-weight:600;">Tell your friends you hit it big!</span>
-        </div>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="marquee-label">Rarities</div>
+      <h2>How rarity works</h2>
+      <p>A film’s tier is earned from its real-world prestige — critical acclaim and popularity decide how rare it spawns. And after dark, the horror films come out to play.</p>
     </div>
-    <div style="margin-top:28px; display:flex; align-items:center; gap:14px; background:linear-gradient(120deg, rgba(96,165,250,.1), rgba(168,85,247,.1), rgba(245,158,11,.1)); border:1px solid #1E1E2A; border-radius:14px; padding:18px 22px;">
-      <div style="width:40px; height:56px; border-radius:6px; background:linear-gradient(135deg,#60a5fa,#A855F7,#F59E0B); box-shadow:0 0 18px rgba(168,85,247,.45); flex:none;"></div>
-      <div>
-        <b style="font-family:'Space Grotesk'; font-size:16px;">And then there's the Shiny.</b>
-        <div style="color:#9CA3AF; font-size:14px; margin-top:4px;">Any catch can roll holographic — an animated foil variant. Rare enough that you'll remember where you were.</div>
+    <div class="odds">
+      <div class="fc-odds">
+        <span class="tier" style="color:var(--common)"><i style="background:var(--common)"></i>COMMON</span>
+        <div class="bar"><div style="background:var(--common); width:55%"></div></div>
+        <span class="note">You'll see these everywhere</span>
+      </div>
+      <div class="fc-odds">
+        <span class="tier" style="color:var(--uncommon)"><i style="background:var(--uncommon)"></i>UNCOMMON</span>
+        <div class="bar"><div style="background:var(--uncommon); width:28%"></div></div>
+        <span class="note">Every few catches</span>
+      </div>
+      <div class="fc-odds">
+        <span class="tier" style="color:var(--rare)"><i style="background:var(--rare)"></i>RARE</span>
+        <div class="bar"><div style="background:var(--rare); width:13%"></div></div>
+        <span class="note">More... what's the word? Rare.</span>
+      </div>
+      <div class="fc-odds">
+        <span class="tier" style="color:var(--epic)"><i style="background:var(--epic)"></i>EPIC</span>
+        <div class="bar"><div style="background:var(--epic); width:6%"></div></div>
+        <span class="note">Few and far between</span>
+      </div>
+      <div class="fc-odds">
+        <span class="tier" style="color:var(--legendary)"><i style="background:var(--legendary)"></i>LEGENDARY</span>
+        <div class="bar"><div style="background:var(--legendary); width:4%"></div></div>
+        <span class="note">Tell your friends you hit it big!</span>
       </div>
     </div>
-    <div style="margin-top:14px; display:flex; align-items:center; gap:14px; background:linear-gradient(120deg, rgba(245,158,11,.08), rgba(253,230,138,.06)); border:1px solid rgba(245,158,11,.35); border-radius:14px; padding:18px 22px;">
-      <div style="width:40px; height:56px; border-radius:6px; background:linear-gradient(135deg,#FDE68A,#F59E0B,#B45309); box-shadow:0 0 18px rgba(245,158,11,.4); flex:none;"></div>
-      <div>
-        <b style="font-family:'Space Grotesk'; font-size:16px; color:#FDE68A;">And the PREMIERE window.</b>
-        <div style="color:#9CA3AF; font-size:14px; margin-top:4px;">Brand-new releases spawn as gold-badged PREMIERE cards for their first 90 days only. Catch one in the window and the badge is yours forever.</div>
+    <div class="special">
+      <div class="card holo">
+        <h3><img src="assets/holo-charm.png" alt="">And then there's the Shiny.</h3>
+        <p>Any catch can roll holographic — an animated foil variant. Rare enough that you'll remember where you were.</p>
+      </div>
+      <div class="card gold">
+        <h3><img src="assets/genre-film.png" alt="">And the PREMIERE window.</h3>
+        <p>Brand-new releases spawn as gold-badged PREMIERE cards for their first 90 days only. Catch one in the window and the badge is yours forever.</p>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<div class="perf" aria-hidden="true"></div>
 
 <!-- progression -->
-<div style="border-top:1px solid #14141c;">
-  <div class="inner" style="padding:64px 40px;">
-    <h2 style="font-size:34px; letter-spacing:-1px; margin-bottom:8px;">Climb from Film Novice to Legend of the Reel</h2>
-    <p style="color:#9CA3AF; font-size:17px; margin:0 0 32px; max-width:640px;">Every catch earns XP. Level up to unlock new titles — a new one is never more than a few levels away — and watch your badge evolve from Bronze all the way to Mythic.</p>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 1</span>Film Novice</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 4</span>Matinee Goer</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 8</span>Film Buff</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 12</span>Cinephile</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 16</span>Reel Scholar</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 20</span>Film Critic</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 25</span>Screen Connoisseur</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 30</span>Auteur</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 36</span>Cinema Curator</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 42</span>Master Archivist</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 48</span>Reel Virtuoso</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 54</span>Silver Screen Sage</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 60</span>Director's Circle</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 67</span>Studio Mogul</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 74</span>Festival Laureate</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 82</span>Cinema Immortal</span>
-        <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid #1E1E2A; background:#111116; font-size:14px; color:#d1d5db;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#60a5fa;">LV 90</span>Keeper of the Canon</span>
-      <span style="display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:999px; border:1px solid rgba(245,158,11,.5); background:rgba(245,158,11,.1); font-size:14px; color:#FDE68A; font-weight:700;"><span style="font-family:'Space Grotesk'; font-weight:700; font-size:11px; color:#fbbf24;">LV 100</span>Legend of the Reel</span>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="marquee-label">Progression</div>
+      <h2>Climb from Film Novice to Legend of the Reel</h2>
+      <p>Every catch earns XP. Level up to unlock new titles — a new one is never more than a few levels away — and watch your badge evolve from Bronze all the way to Mythic.</p>
+    </div>
+    <div class="lvls">
+      <span class="lvl"><b>LV 1</b>Film Novice</span>
+      <span class="lvl"><b>LV 4</b>Matinee Goer</span>
+      <span class="lvl"><b>LV 8</b>Film Buff</span>
+      <span class="lvl"><b>LV 12</b>Cinephile</span>
+      <span class="lvl"><b>LV 16</b>Reel Scholar</span>
+      <span class="lvl"><b>LV 20</b>Film Critic</span>
+      <span class="lvl"><b>LV 25</b>Screen Connoisseur</span>
+      <span class="lvl"><b>LV 30</b>Auteur</span>
+      <span class="lvl"><b>LV 36</b>Cinema Curator</span>
+      <span class="lvl"><b>LV 42</b>Master Archivist</span>
+      <span class="lvl"><b>LV 48</b>Reel Virtuoso</span>
+      <span class="lvl"><b>LV 54</b>Silver Screen Sage</span>
+      <span class="lvl"><b>LV 60</b>Director's Circle</span>
+      <span class="lvl"><b>LV 67</b>Studio Mogul</span>
+      <span class="lvl"><b>LV 74</b>Festival Laureate</span>
+      <span class="lvl"><b>LV 82</b>Cinema Immortal</span>
+      <span class="lvl"><b>LV 90</b>Keeper of the Canon</span>
+      <span class="lvl max"><b style="color:var(--legendary)">LV 100</b><span>Legend of the Reel</span></span>
     </div>
   </div>
-</div>
+</section>
+
+<div class="perf" aria-hidden="true"></div>
 
 <!-- daily loop -->
-<div style="border-top:1px solid #14141c; background:#08080c;">
-  <div class="inner" style="padding:64px 40px;">
-    <h2 style="font-size:34px; letter-spacing:-1px; margin-bottom:32px;">Worth coming back for</h2>
-    <div class="m-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
-      <div class="fc-card" style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
-        <div style="font-size:26px; margin-bottom:12px;">🔎</div>
-        <h3 style="font-size:18px; margin-bottom:8px;">Discover new films</h3>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">Catches surface movies you’d never have searched for — your next favorite is on a corner you walk past every day.</p>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="marquee-label">The daily loop</div>
+      <h2>Worth coming back for</h2>
+    </div>
+    <div class="disc-cols">
+      <div class="disc">
+        <img src="assets/cinema.png" alt="">
+        <h3>Discover new films</h3>
+        <p>Catches surface movies you’d never have searched for — your next favorite is on a corner you walk past every day.</p>
       </div>
-      <div class="fc-card" style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
-        <div style="font-size:26px; margin-bottom:12px;">❤️</div>
-        <h3 style="font-size:18px; margin-bottom:8px;">Hunt your favorites</h3>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">Wishlist the films you love and get a nudge the moment one spawns in range.</p>
+      <div class="disc">
+        <img src="assets/wishlist.png" alt="">
+        <h3>Hunt your favorites</h3>
+        <p>Wishlist the films you love and get a nudge the moment one spawns in range.</p>
       </div>
-      <div class="fc-card" style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
-        <div style="font-size:26px; margin-bottom:12px;">🗓️</div>
-        <h3 style="font-size:18px; margin-bottom:8px;">Daily quests</h3>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">New objectives every day, and a streak worth protecting.</p>
+      <div class="disc">
+        <img src="assets/quest-target.png" alt="">
+        <h3>Daily quests</h3>
+        <p>New objectives every day, and a streak worth protecting.</p>
       </div>
-      <div class="fc-card" style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
-        <div style="font-size:26px; margin-bottom:12px;">⚡</div>
-        <h3 style="font-size:18px; margin-bottom:8px;">Limited-time events</h3>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">Boosted spawns and themed weekends put rare films within reach.</p>
+      <div class="disc">
+        <img src="assets/streak-flame.png" alt="">
+        <h3>Limited-time events</h3>
+        <p>Boosted spawns and themed weekends put rare films within reach.</p>
       </div>
-      <div class="fc-card" style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
-        <div style="font-size:26px; margin-bottom:12px;">🧩</div>
-        <h3 style="font-size:18px; margin-bottom:8px;">Complete sets</h3>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">Themed collections to finish — each one pays out when you complete it.</p>
+      <div class="disc">
+        <img src="assets/genre-film.png" alt="">
+        <h3>Complete sets</h3>
+        <p>Themed collections to finish — each one pays out when you complete it.</p>
       </div>
-      <div class="fc-card" style="background:#0D0D0F; border:1px solid #1E1E2A; border-radius:16px; padding:24px;">
-        <div style="font-size:26px; margin-bottom:12px;">🏆</div>
-        <h3 style="font-size:18px; margin-bottom:8px;">Global leaderboard</h3>
-        <p style="color:#9CA3AF; font-size:14px; line-height:1.55; margin:0;">See how your collection stacks up against collectors worldwide.</p>
+      <div class="disc">
+        <img src="assets/gem.png" alt="">
+        <h3>Global leaderboard</h3>
+        <p>See how your collection stacks up against collectors worldwide.</p>
       </div>
     </div>
   </div>
+</section>
+
+<div class="finale">
+  <div class="bulbs" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <h2>READY FOR YOUR <em>FIRST CATCH?</em></h2>
+  <p>Free to play. Your first catch takes about a minute.</p>
+  <a class="stub" href="index.html#get"><img src="assets/ticket.png" alt="">ADMIT ONE — COMING SOON</a>
 </div>
 
-<!-- cta -->
-<div class="inner" style="padding:80px 40px; text-align:center; background:radial-gradient(circle at 50% 0%, rgba(59,130,246,.16), transparent 60%);">
-  <img src="assets/splash-icon.png" style="width:56px; height:56px; margin-bottom:20px;" />
-  <h2 style="font-size:44px; letter-spacing:-1px; margin-bottom:14px;">Ready for your first catch?</h2>
-  <p style="color:#9CA3AF; font-size:18px; margin:0 auto 30px; max-width:460px;">Free to play. Your first catch takes about a minute.</p>
-  <div style="display:flex; gap:14px; justify-content:center;">
-    <span style="display:inline-flex; align-items:center; gap:10px; background:#fff; color:#0D0D0F; padding:15px 26px; border-radius:12px; font-family:'Space Grotesk'; font-weight:700;">📱 Coming soon to the App Store</span>
-  </div>
-</div>
-
-<!-- footer -->
-<div style="border-top:1px solid #14141c;">
-  <div class="m-wrap inner" style="padding:26px 40px; display:flex; justify-content:space-between; align-items:center; color:#4B5563; font-size:13px;">
-    <span>© 2026 Myers Entertainment LLC · Sarasota, Florida</span>
-    <div style="display:flex; gap:20px;">
-      <a href="privacy.html" style="color:#6b7280;">Privacy Policy</a>
-      <a href="terms.html" style="color:#6b7280;">Terms of Service</a>
-      <a href="support.html" style="color:#6b7280;">Support</a>
-      <span style="display:inline-flex; align-items:center; gap:7px;"><img src="assets/tmdb.svg" alt="TMDB" style="height:10px;">Not endorsed or certified by TMDB.</span>
+<footer>
+  <div class="wrap">
+    <div>© 2026 Myers Entertainment LLC · Sarasota, Florida</div>
+    <div class="legal">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="support.html">Support</a>
+      <span>Not endorsed or certified by TMDB.</span>
     </div>
   </div>
-</div>
-</div>
+</footer>
+
 </body>
 </html>
