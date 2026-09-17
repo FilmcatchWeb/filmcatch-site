@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confirm your email — FilmCatch</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A10">
+<link rel="icon" href="assets/app-icon.png">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
+<style>
+  :root{
+    --bg:#0A0A10; --surface:#13131C; --line:rgba(255,255,255,.09);
+    --text:#F4F2EC; --muted:#9A98A8; --blue:#3B82F6;
+    --gold:#E8B84B; --gold-deep:#B8860B;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:"Bricolage Grotesque",Georgia,serif; font-size:17px; line-height:1.6;
+    min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:999; opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+  .card{
+    max-width:460px; width:100%; text-align:center;
+    background:var(--surface); border:1px solid var(--line); border-radius:18px;
+    padding:44px 32px 40px;
+  }
+  .label{
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:11px;
+    letter-spacing:.32em; text-transform:uppercase; color:var(--gold);
+    display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:18px;
+  }
+  .label::before,.label::after{
+    content:""; height:1px; width:30px;
+  }
+  .label::before{background:linear-gradient(90deg,transparent,var(--gold))}
+  .label::after{background:linear-gradient(90deg,var(--gold),transparent)}
+  h1{
+    font-family:"Unbounded",sans-serif; font-weight:700; font-size:24px;
+    line-height:1.25; margin-bottom:12px;
+  }
+  p{color:var(--muted); margin-bottom:26px}
+  .stub{
+    display:inline-flex; align-items:center; gap:10px; cursor:pointer; border:none;
+    font-family:"Unbounded",sans-serif; font-weight:500; font-size:13px; letter-spacing:.08em;
+    color:#0A0A10; background:var(--gold);
+    padding:15px 30px; border-radius:6px;
+    -webkit-mask:radial-gradient(circle 7px at 0 50%,transparent 6.5px,#000 7px) left,
+                 radial-gradient(circle 7px at 100% 50%,transparent 6.5px,#000 7px) right;
+    -webkit-mask-size:51% 100%; -webkit-mask-repeat:no-repeat;
+    transition:filter .15s;
+  }
+  .stub:hover{filter:brightness(1.08)}
+  .stub:disabled{opacity:.55; cursor:default}
+  #done,#fail{display:none}
+  .big{font-size:44px; margin-bottom:10px}
+  .fine{font-size:14px; margin-top:22px; margin-bottom:0}
+  a{color:var(--blue); text-decoration:none}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">FilmCatch</div>
+
+    <div id="ask">
+      <h1>Confirm your email</h1>
+      <p>One tap and your account is ready. Head back to the app after this to start catching.</p>
+      <button class="stub" id="btn">CONFIRM MY EMAIL</button>
+    </div>
+
+    <div id="done">
+      <div class="big">🎬</div>
+      <h1>You're confirmed</h1>
+      <p>Your account is ready. Open FilmCatch and sign in — films are already spawning near you.</p>
+    </div>
+
+    <div id="fail">
+      <div class="big">🎞️</div>
+      <h1>This link didn't work</h1>
+      <p id="failmsg">It may have expired or already been used. Open FilmCatch and sign in — if it says your email isn't confirmed, request a new link from the sign-in screen.</p>
+      <p class="fine">Still stuck? <a href="mailto:support@filmcatch.app">support@filmcatch.app</a></p>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function(){
+  var SUPABASE_URL = "https://tforqeuaszwrtumnrppd.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_YmRAaheM-s7X7--zqdKrFw_HLVuoSDQ";
+  var params = new URLSearchParams(window.location.search);
+  var tokenHash = params.get("token_hash");
+  var type = params.get("type") || "signup";
+
+  var ask = document.getElementById("ask"),
+      done = document.getElementById("done"),
+      fail = document.getElementById("fail"),
+      btn = document.getElementById("btn");
+
+  function show(el){ ask.style.display="none"; done.style.display="none"; fail.style.display="none"; el.style.display="block"; }
+
+  if(!tokenHash){
+    document.getElementById("failmsg").textContent = "This page needs to be opened from the link in your confirmation email.";
+    show(fail);
+    return;
+  }
+
+  var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  btn.addEventListener("click", function(){
+    btn.disabled = true;
+    btn.textContent = "CONFIRMING…";
+    client.auth.verifyOtp({ token_hash: tokenHash, type: type }).then(function(res){
+      if(res.error){
+        show(fail);
+      } else {
+        show(done);
+      }
+    }).catch(function(){
+      show(fail);
+    });
+  });
+})();
+</script>
+</body>
+</html>
