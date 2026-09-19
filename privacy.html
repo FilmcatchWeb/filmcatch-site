@@ -9,9 +9,10 @@
 <meta property="og:description" content="How FilmCatch (Myers Entertainment LLC) collects, uses, and protects your data.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FilmCatch">
-<meta property="og:image" content="assets/app-icon.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://filmcatch.app/assets/share-card.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A0A10">
+<meta name="apple-itunes-app" content="app-id=6785083259">
 <link rel="icon" href="assets/app-icon.png">
 <link rel="apple-touch-icon" href="assets/app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,15 +194,7 @@
   <p>We never sell your personal information.</p>
 
   <h2 id="s6">6. Service providers</h2>
-  <table>
-    <tr><th>Provider</th><th>What it does</th><th>Data involved</th></tr>
-    <tr><td><b>Supabase</b></td><td>Authentication, database, and file storage (hosted in the United States)</td><td>Account, profile, and game data</td></tr>
-    <tr><td><b>Apple</b></td><td>App distribution, in-app purchases, push delivery</td><td>Purchase records, device tokens</td></tr>
-    <tr><td><b>Expo</b></td><td>Push notification delivery</td><td>Push token, notification content</td></tr>
-    <tr><td><b>Google AdMob</b></td><td>Optional rewarded video ads (Section 4)</td><td>IP address, advertising identifier, device data</td></tr>
-    <tr><td><b>TMDB</b></td><td>Film titles, posters, and metadata — the app requests film data directly from TMDB&rsquo;s servers</td><td>IP address and film requests (no account data is sent)</td></tr>
-    <tr><td><b>Sentry</b></td><td>Crash and error reporting</td><td>Device model, OS version, crash traces</td></tr>
-  </table>
+  <p>We rely on a small set of companies to run FilmCatch, each of which processes data only as needed to provide its service. <b>Supabase</b> hosts our authentication, database, and file storage in the United States, and holds your account, profile, and game data. <b>Apple</b> handles app distribution, in-app purchases, and push delivery, and processes purchase records and device tokens. <b>Expo</b> delivers push notifications and processes your push token and notification content. <b>Google AdMob</b> serves the optional rewarded video ads described in Section 4 and may process your IP address, advertising identifier, and device data. <b>TMDB</b> supplies film titles, posters, and metadata — the app requests film data directly from TMDB&rsquo;s servers, which see your IP address and the films requested but receive no account data. <b>Sentry</b> provides crash and error reporting and receives your device model, OS version, and crash traces.</p>
 
   <h2 id="s7">7. Data retention</h2>
   <p>We keep your information while your account is active. If your account is inactive for an extended period, we may delete it after attempting to notify you at your account email address. Support communications are retained as long as needed to resolve the matter and for a reasonable period afterward. Diagnostics are retained on a rolling short-term basis.</p>
@@ -248,5 +241,18 @@
   </div>
 </footer>
 
+<script>
+// Fragment-link scrolling is unreliable in some browsers when smooth scroll +
+// body overflow are combined — drive TOC jumps explicitly instead.
+document.addEventListener('click', function (e) {
+  var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+  if (!a) return;
+  var el = document.getElementById(a.getAttribute('href').slice(1));
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  history.pushState(null, '', a.getAttribute('href'));
+});
+</script>
 </body>
 </html>

@@ -9,9 +9,10 @@
 <meta property="og:description" content="The terms of service for FilmCatch, operated by Myers Entertainment LLC.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FilmCatch">
-<meta property="og:image" content="assets/app-icon.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://filmcatch.app/assets/share-card.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A0A10">
+<meta name="apple-itunes-app" content="app-id=6785083259">
 <link rel="icon" href="assets/app-icon.png">
 <link rel="apple-touch-icon" href="assets/app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,6 +140,7 @@
   <p>The Service includes virtual currencies (such as Tickets and Gems) and virtual items (such as film cards, holographic and PREMIERE editions, loot boxes, box vouchers, charms, streak freezes, and pins) (together, &ldquo;Virtual Items&rdquo;). You acknowledge and agree that:</p>
   <ul>
     <li>Virtual Items are <b>licensed to you for use within the Service, not sold</b>. You receive a limited, revocable license to use them in-game and own no property interest in them;</li>
+    <li>a film card is a gameplay item that <b>represents</b> a film for collecting purposes only. &ldquo;Catching,&rdquo; &ldquo;collecting,&rdquo; or &ldquo;owning&rdquo; a card grants no rights of any kind in the underlying film, its poster or artwork, or any other content, all of which remain the exclusive property of their respective rights holders;</li>
     <li>Virtual Items have no real-world monetary value, cannot be redeemed for cash or anything of value outside the Service, and cannot be transferred outside the Service;</li>
     <li>where a loot box or similar mechanic is offered, the odds of receiving each rarity tier are disclosed in the app before you open it;</li>
     <li>we may modify, rebalance, add, or remove Virtual Items, drop rates, pricing, and game features at any time to keep the game fair, lawful, and sustainable;</li>
@@ -203,7 +205,8 @@
   <p>If you send us feedback or suggestions, you grant us the right to use them without restriction or compensation.</p>
 
   <h2 id="t13">13. Copyright complaints (DMCA)</h2>
-  <p>We respect intellectual-property rights and will respond to notices that comply with the Digital Millennium Copyright Act. If you believe content on the Service infringes your copyright, send a notice to <a href="mailto:support@filmcatch.app">support@filmcatch.app</a> with: (a) identification of the copyrighted work; (b) identification and location of the allegedly infringing material; (c) your contact information; (d) a statement of good-faith belief that the use is unauthorized; (e) a statement, under penalty of perjury, that the notice is accurate and you are authorized to act for the copyright owner; and (f) your physical or electronic signature. We may remove content, notify the affected user, and terminate repeat infringers.</p>
+  <p>We respect intellectual-property rights and will respond to notices that comply with the Digital Millennium Copyright Act. Copyright notices should be sent to our designated agent, registered with the U.S. Copyright Office under Registration No. DMCA-1080699: Noah Myers, Myers Entertainment L.L.C., by email at <a href="mailto:support@filmcatch.app">support@filmcatch.app</a> (preferred) or by mail at 5556 46th Ct W, Bradenton, FL 34210, USA.</p>
+  <p>If you believe content on the Service infringes your copyright, send a notice to the agent above with: (a) identification of the copyrighted work; (b) identification and location of the allegedly infringing material; (c) your contact information; (d) a statement of good-faith belief that the use is unauthorized; (e) a statement, under penalty of perjury, that the notice is accurate and you are authorized to act for the copyright owner; and (f) your physical or electronic signature. We may remove content, notify the affected user, and terminate repeat infringers.</p>
 
   <h2 id="t14">14. Third-party services</h2>
   <p>The Service depends on third-party services — including Apple (distribution and payments), Supabase (authentication, database, and storage), Expo (push notification delivery), Google AdMob (rewarded ads), and TMDB (film data). Their availability is outside our control, and your use of the app is also subject to Apple&rsquo;s Licensed Application End User License Agreement and App Store terms. Apple is not a party to these Terms, has no obligation to provide support for the Service, and is a third-party beneficiary of these Terms with the right to enforce them against you.</p>
@@ -247,5 +250,18 @@
   </div>
 </footer>
 
+<script>
+// Fragment-link scrolling is unreliable in some browsers when smooth scroll +
+// body overflow are combined — drive TOC jumps explicitly instead.
+document.addEventListener('click', function (e) {
+  var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+  if (!a) return;
+  var el = document.getElementById(a.getAttribute('href').slice(1));
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  history.pushState(null, '', a.getAttribute('href'));
+});
+</script>
 </body>
 </html>

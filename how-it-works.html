@@ -9,9 +9,10 @@
 <meta property="og:description" content="The full FilmCatch loop: scan your area, walk into range, catch films, build your collection, and trade with collectors worldwide.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FilmCatch">
-<meta property="og:image" content="assets/app-icon.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://filmcatch.app/assets/share-card.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A0A10">
+<meta name="apple-itunes-app" content="app-id=6785083259">
 <link rel="icon" href="assets/app-icon.png">
 <link rel="apple-touch-icon" href="assets/app-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,7 +118,7 @@
   .fc-step.on{border-color:rgba(255,255,255,.18); background:var(--surface2)}
   .fc-step.on .fc-step-body{grid-template-rows:1fr}
   .fc-step .fc-bar{position:absolute; left:0; bottom:0; height:3px; width:0}
-  .fc-step.on .fc-bar{animation:fc-prog 5s linear forwards}
+  .fc-step.on .fc-bar{animation:fc-prog 11s linear forwards}
   .fc-step .no{
     font-family:"Unbounded",sans-serif; font-weight:700; font-size:12px; letter-spacing:.12em;
     width:34px; flex-shrink:0;
@@ -421,9 +422,9 @@
 
           <!-- scene 2: walk -->
           <div class="fc-scene">
-            <span class="pin" style="left:68.5%; top:36.5%; border:2.5px solid #F59E0B; animation:fc-inrange 5s ease-in-out infinite;">&#127916;</span>
+            <span class="pin" style="left:68.5%; top:36.5%; border:2.5px solid #F59E0B; animation:fc-inrange 11s ease-in-out infinite;">&#127916;</span>
             <svg style="position:absolute; inset:0; width:100%; height:100%;" viewBox="0 0 264 544" fill="none"><path d="M 80 440 C 100 380, 150 340, 198 230" stroke="rgba(96,165,250,.5)" stroke-width="3" stroke-dasharray="6 8" stroke-linecap="round"/></svg>
-            <div style="position:absolute; left:80px; top:440px; width:0; height:0; animation:fc-walker 5s ease-in-out infinite;">
+            <div style="position:absolute; left:80px; top:440px; width:0; height:0; animation:fc-walker 11s ease-in-out infinite;">
               <span style="position:absolute; left:-34px; top:-34px; width:68px; height:68px; border-radius:50%; border:1.5px solid rgba(96,165,250,.5); background:rgba(59,130,246,.07); animation:fc-pulse 2s ease-in-out infinite;"></span>
               <span style="position:absolute; left:-7px; top:-7px; width:14px; height:14px; border-radius:50%; background:#3B82F6; border:2px solid #EAF2FF; box-shadow:0 0 14px rgba(59,130,246,.9);"></span>
             </div>
@@ -510,10 +511,10 @@
     scenes.forEach(function(s,i){ s.classList.toggle('on', i===cur); });
     tabs.forEach(function(t,i){ t.classList.toggle('act', i===tabFor[cur]); });
     clearTimeout(timer);
-    timer = setTimeout(function(){ go(cur+1); }, 5000);
+    timer = setTimeout(function(){ go(cur+1); }, 11000);
   }
   steps.forEach(function(s,i){ s.addEventListener('click', function(){ go(i); }); });
-  timer = setTimeout(function(){ go(1); }, 5000);
+  timer = setTimeout(function(){ go(1); }, 11000);
 })();
 </script>
 
@@ -555,13 +556,13 @@
       </div>
     </div>
     <div class="special">
-      <div class="card holo">
-        <h3><img src="assets/holo-charm.png" alt="">And then there's the Shiny.</h3>
-        <p>Any catch can roll holographic — an animated foil variant. Rare enough that you'll remember where you were.</p>
-      </div>
       <div class="card gold">
-        <h3><img src="assets/genre-film.png" alt="">And the PREMIERE window.</h3>
+        <h3><img src="assets/genre-film.png" alt="">PREMIERE editions</h3>
         <p>Brand-new releases spawn as gold-badged PREMIERE cards for their first 90 days only. Catch one in the window and the badge is yours forever.</p>
+      </div>
+      <div class="card holo">
+        <h3><img src="assets/holo-charm.png" alt="">Holographic shinies</h3>
+        <p>Any catch can roll holographic — a rare animated foil version of the same film, at any rarity tier.</p>
       </div>
     </div>
   </div>
